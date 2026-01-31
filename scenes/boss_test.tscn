@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cy83j7udp770i"]
+[gd_scene load_steps=21 format=3 uid="uid://cy83j7udp770i"]
 
 [ext_resource type="Script" uid="uid://dfps221v2pwfr" path="res://scripts/enemies/test_boss/test_boss.gd" id="1_elbt7"]
 [ext_resource type="Texture2D" uid="uid://dxvsom652bs6e" path="res://sprites/face_mask.png" id="1_g7g4h"]
@@ -8,25 +8,30 @@
 [ext_resource type="Script" uid="uid://32eikuhncxxu" path="res://scripts/enemies/test_boss/test_boss_attack.gd" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_d62tl"]
 [ext_resource type="Script" uid="uid://s2wvdgmp81n6" path="res://scripts/enemies/test_boss/test_boss_wind_up.gd" id="5_tdmd3"]
-[ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="6_qwmkd"]
-[ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="6_trpar"]
+[ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="9_c50tw"]
+[ext_resource type="Script" uid="uid://di6vkwjdv0psf" path="res://scripts/enemies/rat/rat.gd" id="9_xagxs"]
 [ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="10_1aw3u"]
-[ext_resource type="Script" uid="uid://dp8etbf3bx0c1" path="res://scripts/enemies/rat/rat_idle.gd" id="11_c50tw"]
 [ext_resource type="Script" uid="uid://cfb682vtfcn4n" path="res://scripts/enemies/rat/rat_follow.gd" id="12_d62tl"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_idle.gd" id="12_enpyw"]
+[ext_resource type="Script" uid="uid://ckw15k7m104k4" path="res://scripts/enemies/zombie_rat/zombie_rat_follow.gd" id="13_enpyw"]
+[ext_resource type="Script" uid="uid://d4a7fycsa6l6l" path="res://scripts/enemies/zombie_rat/zombie_rat.gd" id="13_xagxs"]
+[ext_resource type="Script" uid="uid://56notoou73tl" path="res://scripts/enemies/zombie_rat/zombie_rat_shoot.gd" id="14_orwcn"]
+[ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://prefabs/bullets/player/player_simple_bullet.tscn" id="16_b7xdt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5oyu"]
 size = Vector2(58, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qwmkd"]
-radius = 13.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_elbt7"]
 radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d62tl"]
 
 [node name="Root" type="Node2D"]
 
 [node name="TestBoss" type="Area2D" parent="."]
 position = Vector2(571, 148)
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_elbt7")
 
 [node name="Hitbox" type="CollisionShape2D" parent="TestBoss"]
@@ -66,19 +71,10 @@ target = NodePath("../../../TestTarget")
 [node name="TestTarget" type="Node2D" parent="."]
 position = Vector2(574, 429)
 
-[node name="TestBullet" type="Area2D" parent="."]
-position = Vector2(0, 174)
-script = ExtResource("6_qwmkd")
-direction = Vector2(1, 0)
-
-[node name="Hitbox" type="CollisionShape2D" parent="TestBullet"]
-shape = SubResource("CircleShape2D_qwmkd")
-
-[node name="Sprite2D" type="Sprite2D" parent="TestBullet"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("6_trpar")
-
 [node name="Rat" type="CharacterBody2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("9_xagxs")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Rat"]
 shape = SubResource("CircleShape2D_elbt7")
@@ -87,12 +83,20 @@ shape = SubResource("CircleShape2D_elbt7")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_1aw3u")
 
+[node name="FlashOnDamage" type="Node2D" parent="Rat" node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_e5cb8")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="Rat" node_paths=PackedStringArray("flash_on_damage")]
+script = ExtResource("4_d62tl")
+flash_on_damage = NodePath("../FlashOnDamage")
+
 [node name="StateMachine" type="Node2D" parent="Rat" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_7ddre")
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node2D" parent="Rat/StateMachine" node_paths=PackedStringArray("enemy", "target")]
-script = ExtResource("11_c50tw")
+script = ExtResource("12_enpyw")
 enemy = NodePath("../..")
 target = NodePath("../../../TestTarget")
 
@@ -100,5 +104,55 @@ target = NodePath("../../../TestTarget")
 script = ExtResource("12_d62tl")
 enemy = NodePath("../..")
 target = NodePath("../../../TestTarget")
+
+[node name="RatZombie" type="CharacterBody2D" parent="."]
+position = Vector2(238, 0)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("13_xagxs")
+
+[node name="Hitbox" type="CollisionShape2D" parent="RatZombie"]
+shape = SubResource("CircleShape2D_d62tl")
+
+[node name="Sprite2D" type="Sprite2D" parent="RatZombie"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_1aw3u")
+
+[node name="FlashOnDamage" type="Node2D" parent="RatZombie" node_paths=PackedStringArray("sprite")]
+position = Vector2(-238, 0)
+script = ExtResource("2_e5cb8")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="RatZombie" node_paths=PackedStringArray("flash_on_damage")]
+position = Vector2(-238, 0)
+script = ExtResource("4_d62tl")
+flash_on_damage = NodePath("../FlashOnDamage")
+
+[node name="StateMachine" type="Node2D" parent="RatZombie" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_7ddre")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://dybly0jaf324d"
+
+[node name="IdleState" type="Node2D" parent="RatZombie/StateMachine" node_paths=PackedStringArray("enemy", "target")]
+script = ExtResource("12_enpyw")
+enemy = NodePath("../..")
+target = NodePath("../../../TestTarget")
+
+[node name="FollowState" type="Node2D" parent="RatZombie/StateMachine" node_paths=PackedStringArray("enemy", "target")]
+script = ExtResource("13_enpyw")
+enemy = NodePath("../..")
+target = NodePath("../../../TestTarget")
+
+[node name="ShootState" type="Node2D" parent="RatZombie/StateMachine" node_paths=PackedStringArray("enemy", "target")]
+script = ExtResource("14_orwcn")
+enemy = NodePath("../..")
+target = NodePath("../../../TestTarget")
+bullet_scene = ExtResource("9_c50tw")
+
+[node name="PlayerSimpleBullet" parent="." instance=ExtResource("16_b7xdt")]
+position = Vector2(-1150, 197)
+
+[node name="PlayerSimpleBullet2" parent="." instance=ExtResource("16_b7xdt")]
+position = Vector2(-865, 245)
 
 [connection signal="locked_on" from="TestBoss/StateMachine/WindUpState" to="TestBoss/StateMachine/AttackState" method="_on_wind_up_state_locked_on"]

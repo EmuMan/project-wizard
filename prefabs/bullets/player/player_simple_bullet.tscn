@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck3630vilislo"]
+
+[ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="1_3m3b7"]
+[ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://sprites/white_circle.png" id="2_hsr5s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xagxs"]
+
+[node name="PlayerSimpleBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_3m3b7")
+speed = 400.0
+direction = Vector2(1, 0)
+damage_tick_count = 1
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xagxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_hsr5s")
