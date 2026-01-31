@@ -17,5 +17,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_collide(other: Node2D):
 	if other.has_method("take_damage"):
-		other.take_damage(damage_amount, damage_tick_count, damage_time_between_ticks)
+		other.take_damage(damage_amount, damage_tick_count, damage_time_between_ticks, "bullet")
 	queue_free()

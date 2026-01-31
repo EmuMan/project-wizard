@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy83j7udp770i"]
+[gd_scene load_steps=24 format=3 uid="uid://cy83j7udp770i"]
 
 [ext_resource type="Script" uid="uid://dfps221v2pwfr" path="res://scripts/enemies/test_boss/test_boss.gd" id="1_elbt7"]
 [ext_resource type="Texture2D" uid="uid://dxvsom652bs6e" path="res://sprites/face_mask.png" id="1_g7g4h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://32eikuhncxxu" path="res://scripts/enemies/test_boss/test_boss_attack.gd" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_d62tl"]
 [ext_resource type="Script" uid="uid://s2wvdgmp81n6" path="res://scripts/enemies/test_boss/test_boss_wind_up.gd" id="5_tdmd3"]
+[ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="6_trpar"]
 [ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="9_c50tw"]
 [ext_resource type="Script" uid="uid://di6vkwjdv0psf" path="res://scripts/enemies/rat/rat.gd" id="9_xagxs"]
 [ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="10_1aw3u"]
@@ -17,6 +18,7 @@
 [ext_resource type="Script" uid="uid://d4a7fycsa6l6l" path="res://scripts/enemies/zombie_rat/zombie_rat.gd" id="13_xagxs"]
 [ext_resource type="Script" uid="uid://56notoou73tl" path="res://scripts/enemies/zombie_rat/zombie_rat_shoot.gd" id="14_orwcn"]
 [ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://prefabs/bullets/player/player_simple_bullet.tscn" id="16_b7xdt"]
+[ext_resource type="Script" uid="uid://djm52fbgei76o" path="res://scripts/lingering_effects/poison_puddle.gd" id="18_lyyer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5oyu"]
 size = Vector2(58, 20)
@@ -25,6 +27,9 @@ size = Vector2(58, 20)
 radius = 17.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d62tl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ya8ch"]
+radius = 165.68042
 
 [node name="Root" type="Node2D"]
 
@@ -154,5 +159,19 @@ position = Vector2(-1150, 197)
 
 [node name="PlayerSimpleBullet2" parent="." instance=ExtResource("16_b7xdt")]
 position = Vector2(-865, 245)
+
+[node name="PoisonPuddle" type="Area2D" parent="."]
+position = Vector2(321, 253)
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("18_lyyer")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PoisonPuddle"]
+shape = SubResource("CircleShape2D_ya8ch")
+
+[node name="Sprite2D" type="Sprite2D" parent="PoisonPuddle"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_trpar")
 
 [connection signal="locked_on" from="TestBoss/StateMachine/WindUpState" to="TestBoss/StateMachine/AttackState" method="_on_wind_up_state_locked_on"]
