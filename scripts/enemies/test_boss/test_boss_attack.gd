@@ -1,6 +1,6 @@
 extends State
 
-@export var enemy: CharacterBody2D
+@export var enemy: Area2D
 
 @export var attack_speed: float = 2_000
 

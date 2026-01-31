@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy83j7udp770i"]
+[gd_scene load_steps=16 format=3 uid="uid://cy83j7udp770i"]
 
 [ext_resource type="Script" uid="uid://dfps221v2pwfr" path="res://scripts/enemies/test_boss/test_boss.gd" id="1_elbt7"]
 [ext_resource type="Texture2D" uid="uid://dxvsom652bs6e" path="res://sprites/face_mask.png" id="1_g7g4h"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://s2wvdgmp81n6" path="res://scripts/enemies/test_boss/test_boss_wind_up.gd" id="5_tdmd3"]
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="6_qwmkd"]
 [ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="6_trpar"]
+[ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="10_1aw3u"]
+[ext_resource type="Script" uid="uid://dp8etbf3bx0c1" path="res://scripts/enemies/rat/rat_idle.gd" id="11_c50tw"]
+[ext_resource type="Script" uid="uid://cfb682vtfcn4n" path="res://scripts/enemies/rat/rat_follow.gd" id="12_d62tl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5oyu"]
 size = Vector2(58, 20)
@@ -16,9 +19,12 @@ size = Vector2(58, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwmkd"]
 radius = 13.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_elbt7"]
+radius = 17.0
+
 [node name="Root" type="Node2D"]
 
-[node name="TestBoss" type="CharacterBody2D" parent="."]
+[node name="TestBoss" type="Area2D" parent="."]
 position = Vector2(571, 148)
 script = ExtResource("1_elbt7")
 
@@ -66,5 +72,28 @@ shape = SubResource("CircleShape2D_qwmkd")
 [node name="Sprite2D" type="Sprite2D" parent="TestBullet"]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_trpar")
+
+[node name="Rat" type="CharacterBody2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Rat"]
+shape = SubResource("CircleShape2D_elbt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rat"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_1aw3u")
+
+[node name="StateMachine" type="Node2D" parent="Rat" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_7ddre")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node2D" parent="Rat/StateMachine" node_paths=PackedStringArray("enemy", "target")]
+script = ExtResource("11_c50tw")
+enemy = NodePath("../..")
+target = NodePath("../../../TestTarget")
+
+[node name="FollowState" type="Node2D" parent="Rat/StateMachine" node_paths=PackedStringArray("enemy", "target")]
+script = ExtResource("12_d62tl")
+enemy = NodePath("../..")
+target = NodePath("../../../TestTarget")
 
 [connection signal="locked_on" from="TestBoss/StateMachine/WindUpState" to="TestBoss/StateMachine/AttackState" method="_on_wind_up_state_locked_on"]

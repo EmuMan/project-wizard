@@ -2,7 +2,7 @@ extends State
 
 signal locked_on(pos: Vector2)
 
-@export var enemy: CharacterBody2D
+@export var enemy: Area2D
 @export var target: Node2D
 
 @export var wobble_distance: float = 5

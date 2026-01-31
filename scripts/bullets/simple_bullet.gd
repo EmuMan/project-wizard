@@ -6,13 +6,14 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	body_entered.connect(_on_collide)
+	area_entered.connect(_on_collide)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	translate(direction * speed * delta)
 
-func _on_body_entered(body):
-	if body.has_method("take_damage"):
-		body.take_damage(damage_amount)
+func _on_collide(other: Node2D):
+	if other.has_method("take_damage"):
+		other.take_damage(damage_amount)
 	queue_free()

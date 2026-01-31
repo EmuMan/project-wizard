@@ -1,6 +1,6 @@
 extends State
 
-@export var enemy: CharacterBody2D
+@export var enemy: Area2D
 
 @export var move_frequency: float = 0.5
 @export var move_distance: float = 200
