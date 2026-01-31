@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cy83j7udp770i"]
+[gd_scene load_steps=17 format=3 uid="uid://cy83j7udp770i"]
 
 [ext_resource type="Script" uid="uid://dfps221v2pwfr" path="res://scripts/enemies/test_boss/test_boss.gd" id="1_elbt7"]
 [ext_resource type="Texture2D" uid="uid://dxvsom652bs6e" path="res://sprites/face_mask.png" id="1_g7g4h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="2_e5cb8"]
 [ext_resource type="Script" uid="uid://cypoufwbud2ap" path="res://scripts/enemies/test_boss/test_boss_move.gd" id="3_qjeyg"]
 [ext_resource type="Script" uid="uid://32eikuhncxxu" path="res://scripts/enemies/test_boss/test_boss_attack.gd" id="4_3qnke"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_d62tl"]
 [ext_resource type="Script" uid="uid://s2wvdgmp81n6" path="res://scripts/enemies/test_boss/test_boss_wind_up.gd" id="5_tdmd3"]
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="6_qwmkd"]
 [ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="6_trpar"]
@@ -40,6 +41,10 @@ texture = ExtResource("1_g7g4h")
 position = Vector2(-571, -148)
 script = ExtResource("2_e5cb8")
 sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="TestBoss" node_paths=PackedStringArray("flash_on_damage")]
+script = ExtResource("4_d62tl")
+flash_on_damage = NodePath("../FlashOnDamage")
 
 [node name="StateMachine" type="Node2D" parent="TestBoss" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_7ddre")

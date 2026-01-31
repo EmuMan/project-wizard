@@ -1,4 +1,5 @@
 extends Node
+class_name FlashOnDamage
 
 @export var sprite: Sprite2D
 
