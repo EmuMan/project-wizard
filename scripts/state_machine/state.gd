@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name State
 # Base interface for all states: it doesn't do anything by itself,
 # but forces us to pass the right arguments to the methods below
@@ -16,6 +16,9 @@ func exit() -> void:
 	pass
 
 func handle_input(_input_event: InputEvent) -> void:
+	pass
+
+func ready() -> void:
 	pass
 
 func update(_delta: float) -> void:

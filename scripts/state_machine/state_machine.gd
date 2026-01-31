@@ -1,6 +1,6 @@
 # from https://github.com/godotengine/godot-demo-projects/blob/master/2d/finite_state_machine/state_machine
 
-extends Node
+extends Node2D
 class_name StateMachine
 # Base interface for a generic state machine.
 # It handles initializing, setting the machine active or not
@@ -28,6 +28,10 @@ func _enter_tree() -> void:
 func _unhandled_input(input_event: InputEvent) -> void:
 	if current_state:
 		current_state.handle_input(input_event)
+
+func _ready() -> void:
+	for state in state_map.values():
+		state.ready()
 
 func _process(delta: float) -> void:
 	if current_state:
