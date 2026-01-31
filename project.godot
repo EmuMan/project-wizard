@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Project Wizard"
+run/main_scene="uid://b5se7jx65lydp"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
