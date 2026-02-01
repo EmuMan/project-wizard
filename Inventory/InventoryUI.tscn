@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds2qpf7hcopm3"]
+[gd_scene load_steps=7 format=3 uid="uid://ds2qpf7hcopm3"]
 
 [ext_resource type="Script" uid="uid://c0t34bwhc4s0k" path="res://Inventory/inventory_ui.gd" id="1_nyu7x"]
 [ext_resource type="Texture2D" uid="uid://b6528jybvudld" path="res://sprites/invslot.png" id="2_jgibs"]
 [ext_resource type="PackedScene" uid="uid://dsusbaha1vfa1" path="res://Inventory/inventory_slot.tscn" id="3_v30as"]
 [ext_resource type="PackedScene" uid="uid://bbncihjsiky5k" path="res://Inventory/InfoPanel.tscn" id="4_268sv"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="5_mf4s3"]
+[ext_resource type="Texture2D" uid="uid://b2w2vwq1otdj2" path="res://sprites/arrow.png" id="5_s55ce"]
 
 [node name="InventoryUi" type="Control"]
 layout_mode = 3
@@ -105,6 +106,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="InfoPanel" parent="NinePatchRect" instance=ExtResource("4_268sv")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -124,6 +126,18 @@ offset_top = 40.0
 offset_right = -68.0
 offset_bottom = 322.0
 grow_horizontal = 2
+
+[node name="PrevLevelContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="PrevPanel" type="Panel" parent="NinePatchRect/HBoxContainer/PrevLevelContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/PrevLevelContainer/PrevPanel"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_s55ce")
+flip_h = true
 
 [node name="MaskContiner" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
@@ -149,7 +163,22 @@ layout_mode = 2
 [node name="WandSlot" parent="NinePatchRect/HBoxContainer/WandContainer" instance=ExtResource("3_v30as")]
 layout_mode = 2
 
+[node name="NextLevelContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NinePatchRect/HBoxContainer/NextLevelContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/NextLevelContainer/Panel"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_s55ce")
+
 [node name="HeldItem" type="Sprite2D" parent="."]
 visible = false
 top_level = true
 z_index = 1000
+scale = Vector2(0.1, 0.1)
+
+[connection signal="gui_input" from="NinePatchRect/HBoxContainer/PrevLevelContainer" to="." method="_on_prev_level_container_gui_input"]
+[connection signal="gui_input" from="NinePatchRect/HBoxContainer/NextLevelContainer" to="." method="_on_next_level_container_gui_input"]
