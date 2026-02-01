@@ -22,20 +22,16 @@ func silence_all():
 	raccoons_music_player.volume_db = SILENT_VOLUME_DB
 
 func play_menu_music():
-	silence_all()
-	menu_music_player.volume_db = -10.0
+	_transition_to(menu_music_player)
 
 func play_rats_music():
-	silence_all()
-	rats_music_player.volume_db = -10.0
+	_transition_to(rats_music_player)
 
 func play_penguins_music():
-	silence_all()
-	penguins_music_player.volume_db = -10.0
+	_transition_to(penguins_music_player)
 
 func play_raccoons_music():
-	silence_all()
-	raccoons_music_player.volume_db = -10.0
+	_transition_to(raccoons_music_player)
 
 func _transition_to(target_player: AudioStreamPlayer2D):
 	if target_player == current_player:
@@ -48,12 +44,23 @@ func _transition_to(target_player: AudioStreamPlayer2D):
 	var previous_player = current_player
 	current_player = target_player
 	
-	var tween = create_tween().set_parallel(true)
+	var elapsed = 0.0
+	while elapsed < FADE_DURATION:
+		elapsed += get_process_delta_time()
+		var t = clamp(elapsed / FADE_DURATION, 0.0, 1.0)
+		
+		# equal power crossfade
+		var fade_in_gain = sin(t * PI / 2.0)
+		var fade_out_gain = cos(t * PI / 2.0)
+		
+		target_player.volume_db = linear_to_db(fade_in_gain) + TARGET_VOLUME_DB
+		if previous_player:
+			previous_player.volume_db = linear_to_db(fade_out_gain) + TARGET_VOLUME_DB
+		
+		await get_tree().process_frame
 	
-	tween.tween_property(target_player, "volume_db", TARGET_VOLUME_DB, FADE_DURATION)
+	target_player.volume_db = TARGET_VOLUME_DB
 	if previous_player:
-		tween.tween_property(previous_player, "volume_db", SILENT_VOLUME_DB, FADE_DURATION)
-	
-	await tween.finished
+		previous_player.volume_db = SILENT_VOLUME_DB
 	
 	is_transitioning = false
