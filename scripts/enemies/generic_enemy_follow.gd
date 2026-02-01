@@ -7,19 +7,22 @@ extends State
 @export var forget_radius: float = 1_000.0
 @export var distance_kept: float = 100.0
 
+@export var close_state: String
+@export var forget_state: String = "IdleState"
+
 
 func physics_update(delta: float):
 	if not enemy.target:
-		finished.emit("IdleState")
+		finished.emit(forget_state)
 		return
 	
 	var disp_to_target = enemy.target.global_position - enemy.global_position
 	var dist_to_target = disp_to_target.length_squared()
 	if dist_to_target >= forget_radius ** 2:
-		finished.emit("IdleState")
+		finished.emit(forget_state)
 		return
 	if dist_to_target <= distance_kept ** 2:
-		finished.emit("ShootState")
+		finished.emit(close_state)
 		return
 	
 	var dir_to_target = disp_to_target.normalized()

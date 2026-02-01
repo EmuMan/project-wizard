@@ -1,24 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmp7d5vqg130w"]
+[gd_scene load_steps=6 format=3 uid="uid://dmp7d5vqg130w"]
 
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="1_dakbm"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_fj3pe"]
-[ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_d5dt1"]
-[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="2_mwcp2"]
-[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_dakbm"]
-[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="5_t8kng"]
-[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="6_h5al1"]
-[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="7_bayvx"]
-[ext_resource type="Script" uid="uid://bw8gmcq0aut7e" path="res://scripts/enemies/penguin_soldier/penguin_soldier_wind_up.gd" id="8_8t61t"]
-[ext_resource type="Script" uid="uid://co6j0pu4sfak" path="res://scripts/enemies/penguin_soldier/penguin_soldier_charge.gd" id="9_n1uvu"]
-[ext_resource type="Script" uid="uid://d0vrtx01lfrjv" path="res://scripts/enemies/penguin_baller/penguin_baller_follow.gd" id="11_h5al1"]
-[ext_resource type="Script" uid="uid://bgdflghoxgonu" path="res://scripts/enemies/penguin_baller/penguin_baller_shoot.gd" id="12_bayvx"]
-[ext_resource type="PackedScene" uid="uid://cmxj6bi36nw0e" path="res://prefabs/bullets/enemy/enemy_ice_bullet.tscn" id="13_bayvx"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_d5dt1"]
-radius = 19.53
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dakbm"]
-radius = 19.53
+[ext_resource type="PackedScene" uid="uid://dkf120ksnbcf0" path="res://prefabs/enemies/penguin_soldier.tscn" id="3_ycr3o"]
+[ext_resource type="PackedScene" uid="uid://d1c2b64d1f6vv" path="res://prefabs/enemies/penguin_baller.tscn" id="4_aqnk6"]
+[ext_resource type="PackedScene" uid="uid://4klx04u0tm1u" path="res://prefabs/enemies/emperor_penguin.tscn" id="5_aqnk6"]
 
 [node name="PenguinLevel" type="Node2D"]
 
@@ -28,84 +14,10 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_fj3pe")]
 
-[node name="PenguinSoldier" type="CharacterBody2D" parent="."]
+[node name="PenguinSoldier" parent="." instance=ExtResource("3_ycr3o")]
 position = Vector2(595, 199)
-collision_layer = 8
-collision_mask = 7
-script = ExtResource("2_mwcp2")
 
-[node name="Hitbox" type="CollisionShape2D" parent="PenguinSoldier"]
-position = Vector2(-1, 0)
-shape = SubResource("CircleShape2D_d5dt1")
-
-[node name="Sprite2D" type="Sprite2D" parent="PenguinSoldier"]
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_d5dt1")
-
-[node name="Health" type="Node2D" parent="PenguinSoldier" node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
-script = ExtResource("4_dakbm")
-flash_on_damage = NodePath("../FlashOnDamage")
-remove_on_death = NodePath("..")
-
-[node name="FlashOnDamage" type="Node2D" parent="PenguinSoldier" node_paths=PackedStringArray("sprite")]
-script = ExtResource("5_t8kng")
-sprite = NodePath("../Sprite2D")
-
-[node name="StateMachine" type="Node2D" parent="PenguinSoldier" node_paths=PackedStringArray("initial_state")]
-script = ExtResource("6_h5al1")
-initial_state = NodePath("IdleState")
-
-[node name="IdleState" type="Node2D" parent="PenguinSoldier/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_bayvx")
-enemy = NodePath("../..")
-next_state_name = "WindUpState"
-
-[node name="WindUpState" type="Node2D" parent="PenguinSoldier/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("8_8t61t")
-enemy = NodePath("../..")
-
-[node name="ChargeState" type="Node2D" parent="PenguinSoldier/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("9_n1uvu")
-enemy = NodePath("../..")
-
-[node name="PenguinBaller" type="CharacterBody2D" parent="."]
+[node name="PenguinBaller" parent="." instance=ExtResource("4_aqnk6")]
 position = Vector2(171, 307)
-collision_layer = 8
-collision_mask = 7
-script = ExtResource("2_mwcp2")
 
-[node name="Hitbox" type="CollisionShape2D" parent="PenguinBaller"]
-shape = SubResource("CircleShape2D_dakbm")
-
-[node name="Sprite2D" type="Sprite2D" parent="PenguinBaller"]
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_d5dt1")
-
-[node name="Health" type="Node2D" parent="PenguinBaller" node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
-script = ExtResource("4_dakbm")
-flash_on_damage = NodePath("../FlashOnDamage")
-remove_on_death = NodePath("..")
-
-[node name="FlashOnDamage" type="Node2D" parent="PenguinBaller" node_paths=PackedStringArray("sprite")]
-script = ExtResource("5_t8kng")
-sprite = NodePath("../Sprite2D")
-
-[node name="StateMachine" type="Node2D" parent="PenguinBaller" node_paths=PackedStringArray("initial_state")]
-script = ExtResource("6_h5al1")
-initial_state = NodePath("IdleState")
-
-[node name="IdleState" type="Node2D" parent="PenguinBaller/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_bayvx")
-enemy = NodePath("../..")
-next_state_name = "FollowState"
-
-[node name="FollowState" type="Node2D" parent="PenguinBaller/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("11_h5al1")
-enemy = NodePath("../..")
-
-[node name="ShootState" type="Node2D" parent="PenguinBaller/StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("12_bayvx")
-enemy = NodePath("../..")
-bullet_scene = ExtResource("13_bayvx")
-
-[connection signal="locked_on" from="PenguinSoldier/StateMachine/WindUpState" to="PenguinSoldier/StateMachine/ChargeState" method="_on_wind_up_state_locked_on"]
+[node name="EmperorPenguin" parent="." instance=ExtResource("5_aqnk6")]

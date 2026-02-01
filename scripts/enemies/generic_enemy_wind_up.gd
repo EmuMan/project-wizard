@@ -7,6 +7,8 @@ signal locked_on(pos: Vector2)
 @export var wobble_distance: float = 5
 @export var wobble_time: float = 0.5
 
+@export var next_state_name: String
+
 var time_elapsed: float = 0
 var start_position: Vector2
 
@@ -20,7 +22,7 @@ func physics_update(delta: float):
 	time_elapsed += delta
 	if time_elapsed >= wobble_time:
 		enemy.position = start_position
-		finished.emit("ChargeState")
+		finished.emit(next_state_name)
 	else:
 		var x_disp = randf_range(-wobble_distance, wobble_distance)
 		var y_disp = randf_range(-wobble_distance, wobble_distance)

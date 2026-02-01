@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="7_bt0mk"]
 [ext_resource type="Script" uid="uid://48p0gb5lmjju" path="res://scripts/enemies/rat_king/rat_king_special_attack.gd" id="8_povr0"]
 [ext_resource type="PackedScene" uid="uid://dv446gr1sqntx" path="res://prefabs/bullets/enemy/enemy_poison_splash_bullet.tscn" id="9_ukxv0"]
-[ext_resource type="Script" uid="uid://6vtdcbqliyp5" path="res://scripts/enemies/rat_king/rat_king_wind_up.gd" id="10_5mt22"]
+[ext_resource type="Script" uid="uid://d1v31afms45hj" path="res://scripts/enemies/generic_enemy_wind_up.gd" id="10_ba74n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyyer"]
 radius = 82.1523
@@ -55,5 +55,7 @@ enemy = NodePath("../..")
 bullet_scene = ExtResource("9_ukxv0")
 
 [node name="WindUpState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("10_5mt22")
+script = ExtResource("10_ba74n")
 enemy = NodePath("../..")
+wobble_time = 3.0
+next_state_name = "SpecialAttackState"

@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_3w5oy"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_qp774"]
 [ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_dp7m8"]
-[ext_resource type="Script" uid="uid://ckw15k7m104k4" path="res://scripts/enemies/zombie_rat/zombie_rat_follow.gd" id="7_us63r"]
-[ext_resource type="Script" uid="uid://56notoou73tl" path="res://scripts/enemies/zombie_rat/zombie_rat_shoot.gd" id="8_fm8jk"]
+[ext_resource type="Script" uid="uid://g2l1m82ac58f" path="res://scripts/enemies/generic_enemy_follow.gd" id="7_mbihw"]
+[ext_resource type="Script" uid="uid://4mglqv6gwc0i" path="res://scripts/enemies/generic_enemy_shoot.gd" id="8_t05vl"]
 [ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="9_rw8yg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d62tl"]
@@ -48,10 +48,13 @@ enemy = NodePath("../..")
 next_state_name = "FollowState"
 
 [node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_us63r")
+script = ExtResource("7_mbihw")
 enemy = NodePath("../..")
+close_state = "ShootState"
 
 [node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("8_fm8jk")
+script = ExtResource("8_t05vl")
 enemy = NodePath("../..")
 bullet_scene = ExtResource("9_rw8yg")
+warmup_time = 3.0
+next_state_name = "FollowState"
