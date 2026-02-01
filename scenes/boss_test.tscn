@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy83j7udp770i"]
+
+[ext_resource type="PackedScene" uid="uid://copx7anmrlqul" path="res://prefabs/enemies/rat.tscn" id="1_kgeu2"]
+[ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://prefabs/enemies/rat_zombie.tscn" id="2_tdmd3"]
+[ext_resource type="PackedScene" uid="uid://b71glf4ej7dt6" path="res://prefabs/enemies/rat_king.tscn" id="4_trpar"]
+[ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://prefabs/bullets/player/player_simple_bullet.tscn" id="16_b7xdt"]
+
+[node name="Root" type="Node2D"]
+
+[node name="TestTarget" type="Node2D" parent="." groups=["players"]]
+position = Vector2(574, 429)
+
+[node name="Rat" parent="." instance=ExtResource("1_kgeu2")]
+position = Vector2(239, 590)
+
+[node name="RatZombie" parent="." instance=ExtResource("2_tdmd3")]
+position = Vector2(238, 0)
+
+[node name="PlayerSimpleBullet" parent="." instance=ExtResource("16_b7xdt")]
+position = Vector2(-1150, 119)
+
+[node name="PlayerSimpleBullet2" parent="." instance=ExtResource("16_b7xdt")]
+position = Vector2(-865, 245)
+
+[node name="RatKing" parent="." instance=ExtResource("4_trpar")]
+position = Vector2(580, 104)

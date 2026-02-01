@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://7npbhv7up8w"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_mbihw"]
+[ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="2_t05vl"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_85gdb"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_3w5oy"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_qp774"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_dp7m8"]
+[ext_resource type="Script" uid="uid://ckw15k7m104k4" path="res://scripts/enemies/zombie_rat/zombie_rat_follow.gd" id="7_us63r"]
+[ext_resource type="Script" uid="uid://56notoou73tl" path="res://scripts/enemies/zombie_rat/zombie_rat_shoot.gd" id="8_fm8jk"]
+[ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="9_rw8yg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d62tl"]
+
+[node name="RatZombie" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_mbihw")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d62tl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_t05vl")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(-238, 0)
+script = ExtResource("3_85gdb")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage")]
+position = Vector2(-238, 0)
+script = ExtResource("4_3w5oy")
+flash_on_damage = NodePath("../FlashOnDamage")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_qp774")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://dybly0jaf324d"
+
+[node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_dp7m8")
+enemy = NodePath("../..")
+
+[node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_us63r")
+enemy = NodePath("../..")
+
+[node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_fm8jk")
+enemy = NodePath("../..")
+bullet_scene = ExtResource("9_rw8yg")
