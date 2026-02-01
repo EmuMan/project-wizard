@@ -19,6 +19,7 @@ size = Vector2(35, 1241.5)
 script = ExtResource("1_ftu2j")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
 offset_left = -1341.0
 offset_top = -782.0
 offset_right = 1303.0

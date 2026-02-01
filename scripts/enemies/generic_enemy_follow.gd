@@ -2,6 +2,8 @@ extends State
 
 @export var enemy: TargetingEnemy
 
+@export var target_audio_player: AudioStreamPlayer2D
+
 @export var move_speed: float = 100.0
 @export var turn_speed: float = 10.0
 @export var forget_radius: float = 1_000.0
@@ -10,6 +12,10 @@ extends State
 @export var close_state: String
 @export var forget_state: String = "IdleState"
 
+
+func enter() -> void:
+	if target_audio_player:
+		target_audio_player.play()
 
 func physics_update(delta: float):
 	if not enemy.target:

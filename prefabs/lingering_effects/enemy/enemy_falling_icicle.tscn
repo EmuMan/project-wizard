@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://31nvausgd6ei"]
+[gd_scene load_steps=9 format=3 uid="uid://31nvausgd6ei"]
 
 [ext_resource type="Script" uid="uid://c2xk5mvh12rb2" path="res://scripts/lingering_effects/falling_icicle.gd" id="1_ge0es"]
 [ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://sprites/white_circle.png" id="2_437ec"]
+[ext_resource type="AudioStream" uid="uid://c2mw5e2pqbqf0" path="res://sfx/penguins/ice_form.wav" id="3_rp56p"]
+[ext_resource type="AudioStream" uid="uid://dmi00qyruxp6i" path="res://sfx/penguins/ice_heavy_impact.wav" id="3_yq754"]
+[ext_resource type="AudioStream" uid="uid://bppjvc5w37nec" path="res://sfx/penguins/ice_crackling.wav" id="4_qlpkq"]
+[ext_resource type="AudioStream" uid="uid://bw55v62gqkjse" path="res://sfx/penguins/ice_magic.wav" id="4_yq754"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7vddw"]
 radius = 57.63
@@ -34,3 +38,23 @@ scale = Vector2(6.25, 6.25)
 
 [node name="IcicleHitbox" type="CollisionShape2D" parent="IcicleSprite/FallenIcicle"]
 shape = SubResource("CircleShape2D_pnavm")
+
+[node name="IcicleLandAudio" type="AudioStreamPlayer2D" parent="IcicleSprite/FallenIcicle"]
+stream = ExtResource("3_yq754")
+volume_db = -10.0
+autoplay = true
+
+[node name="IcicleCrackleAudio" type="AudioStreamPlayer2D" parent="IcicleSprite/FallenIcicle"]
+stream = ExtResource("4_qlpkq")
+volume_db = -20.0
+autoplay = true
+
+[node name="IcicleFormAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rp56p")
+volume_db = -10.0
+autoplay = true
+
+[node name="IcicleMagicAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yq754")
+volume_db = -10.0
+autoplay = true

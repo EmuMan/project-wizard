@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmxj6bi36nw0e"]
+[gd_scene load_steps=7 format=3 uid="uid://cmxj6bi36nw0e"]
 
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="1_c4itc"]
 [ext_resource type="Script" uid="uid://ckaq21ta58db4" path="res://scripts/status_effects/status_effect.gd" id="2_nllvo"]
 [ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://sprites/white_circle.png" id="3_345wp"]
+[ext_resource type="PackedScene" uid="uid://bm63kvbxord3a" path="res://prefabs/effects/bullet_hits/ice_bullet_hit.tscn" id="3_nllvo"]
 
 [sub_resource type="Resource" id="Resource_n1uvu"]
 script = ExtResource("2_nllvo")
@@ -22,6 +23,7 @@ direction = Vector2(1, 0)
 damage_amount = 3.0
 damage_tick_count = 1
 hit_status_effects = Array[ExtResource("2_nllvo")]([SubResource("Resource_n1uvu")])
+explosion_scene = ExtResource("3_nllvo")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8t61t")
