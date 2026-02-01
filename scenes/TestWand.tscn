@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdkcgr3uabc1y"]
+[gd_scene load_steps=5 format=3 uid="uid://cdkcgr3uabc1y"]
 
 [ext_resource type="Script" uid="uid://cfo8qktorga2j" path="res://scenes/test_wand.gd" id="1_dde5b"]
 [ext_resource type="Texture2D" uid="uid://c7nuokvgunqrj" path="res://sprites/wand.png" id="1_laq2k"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://Inventory/Items/stickwand.tres" id="2_plmjh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laq2k"]
 size = Vector2(14.071069, 48.790375)
 
 [node name="TestWand" type="StaticBody2D"]
 script = ExtResource("1_dde5b")
+item = ExtResource("2_plmjh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 0.7853982

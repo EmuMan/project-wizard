@@ -133,3 +133,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if held_item:
 		held_item_sprite.global_position = get_global_mouse_position()
+
+func _on_prev_level_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		SceneManager.change_scene("TestLevel"+str(Game.level))
+
+func _on_next_level_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Game.level < SceneManager.SCENES.size()-1:
+		Game.level += 1
+		SceneManager.change_scene("TestLevel"+str(Game.level))
