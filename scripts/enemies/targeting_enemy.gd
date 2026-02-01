@@ -4,8 +4,8 @@ class_name TargetingEnemy
 @export var flip_to_face_target: bool = true
 @export var flip_speed: float = 10.0
 
-@onready var sprite = $Sprite2D
-@onready var health = $Health
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var health: Health = $Health
 
 var target: Node2D
 

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Health
 
 signal took_damage(amount: float)
 signal died

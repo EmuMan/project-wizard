@@ -6,9 +6,6 @@ extends State
 @export var turn_speed: float = 10.0
 @export var forget_radius: float = 1_000.0
 
-func enter():
-	print("entered follow state")
-
 func physics_update(delta: float):
 	if not enemy.target:
 		finished.emit("IdleState")

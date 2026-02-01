@@ -10,6 +10,7 @@ var can_move = true
 @export var inventory: Inventory
 @onready var mask_sprite: Sprite2D = $MaskSprite
 @onready var wand_node: Node2D = $Wand
+@onready var health: Health = $Health
 
 func _ready():
 	mask = inventory.equipped[0]
@@ -36,6 +37,9 @@ func _process(_delta: float) -> void:
 		mask_sprite.texture = mask.texture
 	if wand and !wand_node.wand:
 		wand_node.wand = wand
+
+func take_damage(amount: float, tick_count: int, time_between_ticks: float, source: String) -> void:
+	health.take_damage_over_time(amount, tick_count, time_between_ticks, source)
 
 func collect(item: ItemData):
 	inventory.insert(item)

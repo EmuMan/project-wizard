@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqnuyeunopyv7"]
+[gd_scene load_steps=13 format=3 uid="uid://cqnuyeunopyv7"]
 
 [ext_resource type="Script" uid="uid://cpil2acsbyic" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://Inventory/Items/stickwand.tres" id="2_70d11"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dmyf2fg274pdk" path="res://sprites/player.png" id="5_70d11"]
 [ext_resource type="Script" uid="uid://fuchnqqtg04t" path="res://scripts/player/player_shoot.gd" id="7_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://prefabs/bullets/player/player_simple_bullet.tscn" id="8_khinc"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="9_6eyey"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="10_d3wef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
 size = Vector2(15, 32)
@@ -44,6 +46,16 @@ script = ExtResource("7_cw2d6")
 bullet_scene = ExtResource("8_khinc")
 
 [node name="PickupArea" type="Area2D" parent="." groups=["Pickup"]]
+collision_layer = 32
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_qu4a1")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage")]
+script = ExtResource("9_6eyey")
+flash_on_damage = NodePath("../FlashOnDamage")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("10_d3wef")
+sprite = NodePath("../PlayerSprite")

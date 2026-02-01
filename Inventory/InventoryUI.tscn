@@ -135,7 +135,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/PrevLevelContainer/PrevPanel"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.066, 0.066)
 texture = ExtResource("5_s55ce")
 flip_h = true
 
@@ -171,7 +171,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/NextLevelContainer/Panel"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.06640625, 0.06640625)
 texture = ExtResource("5_s55ce")
 
 [node name="HeldItem" type="Sprite2D" parent="."]

@@ -10,9 +10,11 @@ offset_bottom = 96.0
 script = ExtResource("1_gpqwp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.16, 0.16)
+position = Vector2(-44, -43.999996)
+scale = Vector2(0.088867195, 0.088867195)
 texture = ExtResource("1_68pn2")
 centered = false
+offset = Vector2(0, 28.195)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(96, 96)
