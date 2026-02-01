@@ -45,6 +45,7 @@ metadata/_custom_type_script = "uid://dybly0jaf324d"
 [node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_dp7m8")
 enemy = NodePath("../..")
+next_state_name = "FollowState"
 
 [node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_us63r")

@@ -40,6 +40,7 @@ initial_state = NodePath("IdleState")
 [node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_nhu62")
 enemy = NodePath("../..")
+next_state_name = "FollowState"
 
 [node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_aclqt")

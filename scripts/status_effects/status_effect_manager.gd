@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 			active_effects.remove_at(i)
 
 func add_effect(effect: StatusEffect) -> void:
-	active_effects.append(effect)
+	active_effects.append(effect.duplicate())
 
 func remove_effects_by_source(source_id: String) -> void:
 	for i in range(len(active_effects) - 1, -1, -1):

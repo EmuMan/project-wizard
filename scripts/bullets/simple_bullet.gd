@@ -7,6 +7,8 @@ extends Area2D
 @export var damage_tick_count: int = 5
 @export var damage_time_between_ticks: float = 1.0
 
+@export var hit_status_effects: Array[StatusEffect]
+
 @export var explosion_scene: PackedScene
 
 func init_bullet(spawn_pos: Vector2, click_pos: Vector2) -> void:
@@ -25,6 +27,9 @@ func _physics_process(delta: float) -> void:
 func _on_collide(other: Node2D):
 	if other.has_method("take_damage"):
 		other.take_damage(damage_amount, damage_tick_count, damage_time_between_ticks, "bullet")
+	if other.has_method("apply_status_effect"):
+		for status_effect in hit_status_effects:
+			other.apply_status_effect(status_effect)
 	explode()
 
 func explode():
