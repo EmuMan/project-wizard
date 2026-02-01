@@ -35,6 +35,7 @@ sprite = NodePath("../Sprite2D")
 position = Vector2(-238, 0)
 script = ExtResource("4_3w5oy")
 flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 50.0
 remove_on_death = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]

@@ -1,12 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8a11q4oclpcq"]
+[gd_scene load_steps=10 format=3 uid="uid://b8a11q4oclpcq"]
 
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_7o84y"]
+[ext_resource type="Texture2D" uid="uid://b3kfhjrjh4ts2" path="res://sprites/graybg.png" id="1_jb676"]
 [ext_resource type="PackedScene" uid="uid://b71glf4ej7dt6" path="res://prefabs/enemies/rat_king.tscn" id="2_wngk1"]
 [ext_resource type="PackedScene" uid="uid://copx7anmrlqul" path="res://prefabs/enemies/rat.tscn" id="3_6vmdf"]
 [ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://prefabs/enemies/rat_zombie.tscn" id="4_lteeu"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="5_lteeu"]
+[ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/EnemySpawn.tscn" id="7_8t1o2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lteeu"]
+size = Vector2(1609, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb676"]
+size = Vector2(35, 1241.5)
 
 [node name="RatLevel" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1341.0
+offset_top = -782.0
+offset_right = 1303.0
+offset_bottom = 758.0
+texture = ExtResource("1_jb676")
+
+[node name="EnemySpawn" parent="." instance=ExtResource("7_8t1o2")]
+position = Vector2(-250, -200)
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("7_8t1o2")]
+position = Vector2(-250, 200)
+
+[node name="EnemySpawn3" parent="." instance=ExtResource("7_8t1o2")]
+position = Vector2(250, 200)
+
+[node name="EnemySpawn4" parent="." instance=ExtResource("7_8t1o2")]
+position = Vector2(250, -200)
 
 [node name="Player" parent="." instance=ExtResource("1_7o84y")]
 
@@ -17,8 +44,26 @@ position = Vector2(541, 79)
 position = Vector2(116, 498)
 
 [node name="RatZombie" parent="." instance=ExtResource("4_lteeu")]
-position = Vector2(926, 289)
+position = Vector2(479, 267)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_lteeu")
 target = NodePath("../Player")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(14, 604)
+shape = SubResource("RectangleShape2D_lteeu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(15, -611)
+shape = SubResource("RectangleShape2D_lteeu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-773, 1)
+shape = SubResource("RectangleShape2D_jb676")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(801, -5)
+shape = SubResource("RectangleShape2D_jb676")
