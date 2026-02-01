@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b71glf4ej7dt6"]
+[gd_scene load_steps=13 format=3 uid="uid://b71glf4ej7dt6"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_ba74n"]
 [ext_resource type="Texture2D" uid="uid://dbijomanfq854" path="res://sprites/rats/rat_king.png" id="2_ba74n"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_eqsxg"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_bgppb"]
+[ext_resource type="PackedScene" uid="uid://b8ua0icrqukqy" path="res://scenes/RatMask.tscn" id="5_2e3ci"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_blkej"]
 [ext_resource type="Script" uid="uid://c3si6exg6doju" path="res://scripts/enemies/rat_king/rat_king_standard_attack.gd" id="6_fir7g"]
 [ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://prefabs/bullets/enemy/enemy_poison_bullet.tscn" id="7_bt0mk"]
@@ -37,8 +38,9 @@ sprite = NodePath("../Sprite2D")
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("4_bgppb")
 flash_on_damage = NodePath("../FlashOnDamage")
-max_health = 1000.0
+max_health = 50.0
 remove_on_death = NodePath("..")
+death_scene = ExtResource("5_2e3ci")
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_blkej")

@@ -5,11 +5,12 @@ extends Node
 
 const SCENES = {
 	"Inventory":	"uid://ds2qpf7hcopm3",
-	#"TestLevel1":	"uid://b8a11q4oclpcq"
-	"TestLevel1":	"uid://dmp7d5vqg130w"
+	"TestLevel1":	"uid://b8a11q4oclpcq"
+	#"TestLevel1":	"uid://dmp7d5vqg130w"
 }
 
 var current_scene: Node = null
+var current_scene_name: String = ""
 
 #endregion
 
@@ -31,4 +32,5 @@ func change_scene(_scene_name) -> void:
 		current_scene.queue_free()
 	
 	current_scene = _new_scene
+	current_scene_name = _scene_name
 	Game.Scene.add_child(current_scene)
