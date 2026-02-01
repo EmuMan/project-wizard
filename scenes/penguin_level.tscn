@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmp7d5vqg130w"]
+[gd_scene load_steps=7 format=3 uid="uid://dmp7d5vqg130w"]
 
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="1_dakbm"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_fj3pe"]
 [ext_resource type="PackedScene" uid="uid://dkf120ksnbcf0" path="res://prefabs/enemies/penguin_soldier.tscn" id="3_ycr3o"]
 [ext_resource type="PackedScene" uid="uid://d1c2b64d1f6vv" path="res://prefabs/enemies/penguin_baller.tscn" id="4_aqnk6"]
 [ext_resource type="PackedScene" uid="uid://4klx04u0tm1u" path="res://prefabs/enemies/emperor_penguin.tscn" id="5_aqnk6"]
+[ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="6_7dhp3"]
 
 [node name="PenguinLevel" type="Node2D"]
 
@@ -21,3 +22,7 @@ position = Vector2(595, 199)
 position = Vector2(171, 307)
 
 [node name="EmperorPenguin" parent="." instance=ExtResource("5_aqnk6")]
+
+[node name="PlayPenguinsMusic" type="Node2D" parent="."]
+script = ExtResource("6_7dhp3")
+music_name = "penguins"

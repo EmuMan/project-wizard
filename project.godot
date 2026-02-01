@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://scripts/global.gd"
 SceneManager="*res://scripts/scene_manager.gd"
+MusicController="*res://scenes/music_controller.tscn"
 
 [global_group]
 
