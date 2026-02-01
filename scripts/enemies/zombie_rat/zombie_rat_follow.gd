@@ -1,7 +1,6 @@
 extends State
 
-@export var enemy: CharacterBody2D
-@export var target: Node2D
+@export var enemy: TargetingEnemy
 
 @export var move_speed: float = 100.0
 @export var turn_speed: float = 10.0
@@ -10,14 +9,15 @@ extends State
 
 
 func physics_update(delta: float):
-	if not target:
+	if not enemy.target:
 		return
 	
-	var disp_to_target = target.global_position - enemy.global_position
-	if disp_to_target.length_squared() >= forget_radius ** 2:
+	var disp_to_target = enemy.target.global_position - enemy.global_position
+	var dist_to_target = disp_to_target.length_squared()
+	if dist_to_target >= forget_radius ** 2:
 		finished.emit("IdleState")
 		return
-	if disp_to_target.length_squared() <= distance_kept ** 2:
+	if dist_to_target <= distance_kept ** 2:
 		finished.emit("ShootState")
 		return
 	

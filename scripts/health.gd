@@ -38,8 +38,6 @@ func take_damage_once(amount: float, source: String) -> void:
 			return
 		special_damage_timers[source] = 0.0
 	
-	print("damaging!")
-	
 	health -= amount
 	took_damage.emit(amount)
 	

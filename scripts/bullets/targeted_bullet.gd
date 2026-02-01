@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var speed: float = 200
-@export var direction: Vector2
+@export var target_position: Vector2
 
 @export var damage_amount: float = 10.0
 @export var damage_tick_count: int = 5
@@ -16,7 +16,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	translate(direction * speed * delta)
+	var new_position = position.move_toward(target_position, speed * delta)
+	if new_position == target_position:
+		explode()
+	else:
+		position = new_position
 
 func _on_collide(other: Node2D):
 	if other.has_method("take_damage"):

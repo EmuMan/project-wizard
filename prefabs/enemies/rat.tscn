@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://copx7anmrlqul"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_c7neh"]
+[ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="2_3tees"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_myk3o"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_u275g"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_ndaeq"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_nhu62"]
+[ext_resource type="Script" uid="uid://cfb682vtfcn4n" path="res://scripts/enemies/rat/rat_follow.gd" id="7_aclqt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elbt7"]
+radius = 17.0
+
+[node name="Rat" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_c7neh")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_elbt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_3tees")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_myk3o")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage")]
+script = ExtResource("4_u275g")
+flash_on_damage = NodePath("../FlashOnDamage")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_ndaeq")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_nhu62")
+enemy = NodePath("../..")
+
+[node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_aclqt")
+enemy = NodePath("../..")

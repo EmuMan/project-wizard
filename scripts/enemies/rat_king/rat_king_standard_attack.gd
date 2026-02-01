@@ -4,19 +4,28 @@ extends State
 
 @export var bullet_scene: PackedScene
 
-@export var warmup_time: float = 3.0
+@export var shoot_cooldown: float = 1.0
+@export var state_duration: float = 20.0
 
-var timer: float = 0.0
-var has_shot: bool
+var shoot_timer: float
+var state_timer: float
 
 func enter():
-	timer = 0.0
-	has_shot = false
+	shoot_timer = 0.0
+	state_timer = 0.0
 
 func physics_update(delta: float):
-	timer += delta
-	if timer < warmup_time or has_shot:
+	shoot_timer += delta
+	state_timer += delta
+	
+	if state_timer > state_duration:
+		finished.emit("WindUpState")
 		return
+	
+	if shoot_timer < shoot_cooldown:
+		return
+	
+	enemy.find_new_target()
 	
 	if not enemy.target:
 		return
@@ -27,6 +36,4 @@ func physics_update(delta: float):
 	bullet.direction = dir_to_target
 	get_tree().current_scene.add_child(bullet)
 	
-	has_shot = true
-	
-	finished.emit("FollowState")
+	shoot_timer = 0.0
