@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://bj2l5cejwy851"]
+
+[ext_resource type="Script" uid="uid://bh31262grwmje" path="res://Inventory/item_data.gd" id="1_78geo"]
+[ext_resource type="Resource" uid="uid://biqjp0idaqtia" path="res://Inventory/Items/sickmask.tres" id="2_1mxdw"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://Inventory/Items/stickwand.tres" id="2_4jx6n"]
+[ext_resource type="Script" uid="uid://dlft01ctkom7c" path="res://Inventory/inventory.gd" id="3_1mxdw"]
+
+[resource]
+script = ExtResource("3_1mxdw")
+items = Array[ExtResource("1_78geo")]([null, null, null, null, null, ExtResource("2_4jx6n"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+equipped = Array[ExtResource("1_78geo")]([ExtResource("2_1mxdw"), ExtResource("2_4jx6n")])
+metadata/_custom_type_script = "uid://dlft01ctkom7c"

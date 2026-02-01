@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqnuyeunopyv7"]
+
+[ext_resource type="Texture2D" uid="uid://nl360louax7f" path="res://sprites/wizard-placeholder.png" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://cpil2acsbyic" path="res://scripts/player.gd" id="1_v6fml"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://Inventory/Items/stickwand.tres" id="2_70d11"]
+[ext_resource type="Resource" uid="uid://biqjp0idaqtia" path="res://Inventory/Items/sickmask.tres" id="2_cw2d6"]
+[ext_resource type="Resource" uid="uid://bj2l5cejwy851" path="res://Inventory/PlayerInventory.tres" id="2_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://dw2jtubxjr1yh" path="res://scenes/Wand.tscn" id="4_mdl7e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
+size = Vector2(15, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qu4a1"]
+radius = 45.044422
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_v6fml")
+mask = ExtResource("2_cw2d6")
+wand = ExtResource("2_70d11")
+inventory = ExtResource("2_qu4a1")
+metadata/_edit_horizontal_guides_ = [-30.0, 30.0]
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_p0vlq")
+
+[node name="MaskSprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -7)
+scale = Vector2(0.02, 0.02)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_p0vlq")
+
+[node name="Wand" parent="." instance=ExtResource("4_mdl7e")]
+
+[node name="PickupArea" type="Area2D" parent="." groups=["Pickup"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_qu4a1")
