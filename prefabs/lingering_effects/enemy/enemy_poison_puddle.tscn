@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://nnwylurh0swj"]
+[gd_scene load_steps=6 format=3 uid="uid://nnwylurh0swj"]
 
 [ext_resource type="Script" uid="uid://djm52fbgei76o" path="res://scripts/lingering_effects/poison_puddle.gd" id="1_imrsn"]
 [ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="2_8mnss"]
+[ext_resource type="AudioStream" uid="uid://cvj4qwocp80l1" path="res://sfx/rats/splat.wav" id="3_vubpv"]
+[ext_resource type="AudioStream" uid="uid://c3yxsmuf4und3" path="res://sfx/rats/sizzle.wav" id="4_yce1f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ya8ch"]
 radius = 165.68042
@@ -18,3 +20,12 @@ shape = SubResource("CircleShape2D_ya8ch")
 z_index = -1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_8mnss")
+
+[node name="SplatAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vubpv")
+autoplay = true
+
+[node name="SizzleAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yce1f")
+volume_db = -10.0
+autoplay = true

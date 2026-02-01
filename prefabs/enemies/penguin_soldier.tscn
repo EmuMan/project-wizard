@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkf120ksnbcf0"]
+[gd_scene load_steps=11 format=3 uid="uid://dkf120ksnbcf0"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_4m1sr"]
 [ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_d2ms6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_rfaml"]
 [ext_resource type="Script" uid="uid://d1v31afms45hj" path="res://scripts/enemies/generic_enemy_wind_up.gd" id="7_e21iv"]
 [ext_resource type="Script" uid="uid://co6j0pu4sfak" path="res://scripts/enemies/penguin_soldier/penguin_soldier_charge.gd" id="8_d87vi"]
+[ext_resource type="AudioStream" uid="uid://c774bts4xe8e3" path="res://sfx/penguins/penguin_noise.wav" id="9_d2ms6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5dt1"]
 radius = 19.53
@@ -48,8 +49,12 @@ script = ExtResource("7_e21iv")
 enemy = NodePath("../..")
 next_state_name = "ChargeState"
 
-[node name="ChargeState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="ChargeState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy", "charge_audio_player")]
 script = ExtResource("8_d87vi")
 enemy = NodePath("../..")
+charge_audio_player = NodePath("../../ChargeAudioPlayer")
+
+[node name="ChargeAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_d2ms6")
 
 [connection signal="locked_on" from="StateMachine/WindUpState" to="StateMachine/ChargeState" method="_on_wind_up_state_locked_on"]

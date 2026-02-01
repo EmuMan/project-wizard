@@ -2,6 +2,8 @@ extends State
 
 @export var enemy: TargetingEnemy
 
+@export var charge_audio_player: AudioStreamPlayer2D
+
 @export var attack_speed: float = 500
 @export var max_time: float = 2.0
 @export var collision_damage: float = 10.0
@@ -15,6 +17,8 @@ var entities_hit: Array[int]
 func enter() -> void:
 	timer = 0.0
 	entities_hit = []
+	if charge_audio_player:
+		charge_audio_player.play()
 
 func physics_update(delta: float):
 	timer += delta

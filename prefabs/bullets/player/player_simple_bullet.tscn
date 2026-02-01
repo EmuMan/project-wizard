@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck3630vilislo"]
+[gd_scene load_steps=5 format=3 uid="uid://ck3630vilislo"]
 
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="1_3m3b7"]
+[ext_resource type="PackedScene" uid="uid://bdl3n47g6305f" path="res://prefabs/effects/bullet_hits/default_bullet_hit.tscn" id="2_2wbyc"]
 [ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://sprites/white_circle.png" id="2_hsr5s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xagxs"]
@@ -12,6 +13,7 @@ script = ExtResource("1_3m3b7")
 speed = 400.0
 direction = Vector2(1, 0)
 damage_tick_count = 1
+explosion_scene = ExtResource("2_2wbyc")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xagxs")
