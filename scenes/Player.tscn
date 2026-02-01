@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqnuyeunopyv7"]
+[gd_scene load_steps=16 format=3 uid="uid://cqnuyeunopyv7"]
 
 [ext_resource type="Script" uid="uid://cpil2acsbyic" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://Inventory/Items/stickwand.tres" id="2_70d11"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://fuchnqqtg04t" path="res://scripts/player/player_shoot.gd" id="7_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://prefabs/bullets/player/player_simple_bullet.tscn" id="8_khinc"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="9_6eyey"]
+[ext_resource type="PackedScene" uid="uid://dgfetujwal8f1" path="res://prefabs/bullets/player/PlayerPoisonSplashBullet.tscn" id="9_o4126"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="10_d3wef"]
+[ext_resource type="PackedScene" uid="uid://co840tqphhpgl" path="res://prefabs/bullets/player/PlayerIceBullet.tscn" id="10_lkdrv"]
 [ext_resource type="Script" uid="uid://day4ftcyhano" path="res://scripts/status_effects/status_effect_manager.gd" id="11_d3wef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
@@ -45,6 +47,8 @@ shape = SubResource("RectangleShape2D_p0vlq")
 position = Vector2(65, 0)
 script = ExtResource("7_cw2d6")
 bullet_scene = ExtResource("8_khinc")
+rat_special_scene = ExtResource("9_o4126")
+penguin_special_scene = ExtResource("10_lkdrv")
 
 [node name="PickupArea" type="Area2D" parent="." groups=["Pickup"]]
 collision_layer = 32
@@ -63,3 +67,9 @@ sprite = NodePath("../PlayerSprite")
 
 [node name="StatusEffectManager" type="Node2D" parent="."]
 script = ExtResource("11_d3wef")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -72.0
+offset_top = -79.0
+offset_right = 72.0
+offset_bottom = -52.0

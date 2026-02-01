@@ -5,10 +5,9 @@ extends Node
 
 const SCENES = {
 	"Inventory":	"uid://ds2qpf7hcopm3",
-	"TestLevel1":	"uid://b8a11q4oclpcq"
-	#"TestLevel1":	"uid://dmp7d5vqg130w"
+	"Level1":	"uid://b8a11q4oclpcq",
+	"Level2":	"uid://dmp7d5vqg130w"
 }
-
 var current_scene: Node = null
 var current_scene_name: String = ""
 

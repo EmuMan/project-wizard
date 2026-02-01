@@ -12,6 +12,7 @@ var can_move = true
 @onready var wand_node: Node2D = $Wand
 @onready var health: Health = $Health
 @onready var status_effects: StatusEffectManager = $StatusEffectManager
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 func _ready():
 	mask = inventory.equipped[0]
@@ -39,6 +40,7 @@ func _process(_delta: float) -> void:
 		mask_sprite.texture = mask.texture
 	if wand and !wand_node.wand:
 		wand_node.wand = wand
+	progress_bar.value = health.health
 
 func take_damage(amount: float, tick_count: int, time_between_ticks: float, source: String) -> void:
 	health.take_damage_over_time(amount, tick_count, time_between_ticks, source)
