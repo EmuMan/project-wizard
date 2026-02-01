@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b71glf4ej7dt6"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_ba74n"]
-[ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="2_2e3ci"]
+[ext_resource type="Texture2D" uid="uid://dbijomanfq854" path="res://sprites/rats/rat_king.png" id="2_ba74n"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_eqsxg"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_bgppb"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_blkej"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://6vtdcbqliyp5" path="res://scripts/enemies/rat_king/rat_king_wind_up.gd" id="10_5mt22"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyyer"]
-radius = 33.955853
+radius = 82.1523
 
 [node name="RatKing" type="CharacterBody2D"]
 collision_layer = 8
@@ -23,17 +23,22 @@ script = ExtResource("1_ba74n")
 shape = SubResource("CircleShape2D_lyyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_2e3ci")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ba74n")
+
+[node name="ShootPoint" type="Node2D" parent="Sprite2D"]
+position = Vector2(-879.99994, -819.99994)
+scale = Vector2(9.999999, 9.999999)
 
 [node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("3_eqsxg")
 sprite = NodePath("../Sprite2D")
 
-[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage")]
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("4_bgppb")
 flash_on_damage = NodePath("../FlashOnDamage")
 max_health = 1000.0
+remove_on_death = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_blkej")

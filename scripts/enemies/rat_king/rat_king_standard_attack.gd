@@ -30,10 +30,9 @@ func physics_update(delta: float):
 	if not enemy.target:
 		return
 	
-	var dir_to_target = enemy.global_position.direction_to(enemy.target.global_position)
+	var shoot_point = enemy.find_child("ShootPoint").global_position
 	var bullet = bullet_scene.instantiate()
-	bullet.global_position = enemy.global_position
-	bullet.direction = dir_to_target
+	bullet.init_bullet(shoot_point, enemy.target.global_position)
 	get_tree().current_scene.add_child(bullet)
 	
 	shoot_timer = 0.0

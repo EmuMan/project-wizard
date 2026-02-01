@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8a11q4oclpcq"]
+
+[ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_7o84y"]
+[ext_resource type="PackedScene" uid="uid://b71glf4ej7dt6" path="res://prefabs/enemies/rat_king.tscn" id="2_wngk1"]
+[ext_resource type="PackedScene" uid="uid://copx7anmrlqul" path="res://prefabs/enemies/rat.tscn" id="3_6vmdf"]
+[ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://prefabs/enemies/rat_zombie.tscn" id="4_lteeu"]
+[ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="5_lteeu"]
+
+[node name="RatLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7o84y")]
+
+[node name="RatKing" parent="." instance=ExtResource("2_wngk1")]
+position = Vector2(541, 79)
+
+[node name="Rat" parent="." instance=ExtResource("3_6vmdf")]
+position = Vector2(116, 498)
+
+[node name="RatZombie" parent="." instance=ExtResource("4_lteeu")]
+position = Vector2(926, 289)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_lteeu")
+target = NodePath("../Player")

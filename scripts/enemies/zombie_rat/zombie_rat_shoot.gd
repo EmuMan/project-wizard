@@ -19,12 +19,11 @@ func physics_update(delta: float):
 		return
 	
 	if not enemy.target:
+		finished.emit("IdleState")
 		return
 	
-	var dir_to_target = enemy.global_position.direction_to(enemy.target.global_position)
 	var bullet = bullet_scene.instantiate()
-	bullet.global_position = enemy.global_position
-	bullet.direction = dir_to_target
+	bullet.init_bullet(global_position, enemy.target.global_position)
 	get_tree().current_scene.add_child(bullet)
 	
 	has_shot = true

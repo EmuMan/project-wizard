@@ -10,6 +10,7 @@ extends State
 
 func physics_update(delta: float):
 	if not enemy.target:
+		finished.emit("IdleState")
 		return
 	
 	var disp_to_target = enemy.target.global_position - enemy.global_position

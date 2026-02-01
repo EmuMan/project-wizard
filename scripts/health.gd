@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 signal took_damage(amount: float)
 signal died
@@ -6,6 +6,9 @@ signal died
 @export var flash_on_damage: FlashOnDamage
 
 @export var max_health: float = 100.0
+
+@export var remove_on_death: Node
+@export var death_scene: PackedScene
 
 var health: float
 var alive: bool
@@ -45,11 +48,22 @@ func take_damage_once(amount: float, source: String) -> void:
 		flash_on_damage.flash()
 	
 	if health <= 0:
-		died.emit()
-		alive = false
-		health = 0
+		die()
 
 func take_damage_over_time(amount: float, tick_count: int, time_per_tick: float, source: String) -> void:
 	for _i in range(tick_count):
 		take_damage_once(amount, source)
 		await get_tree().create_timer(time_per_tick).timeout
+
+func die():
+	died.emit()
+	alive = false
+	health = 0
+	
+	if death_scene:
+		var death = death_scene.instantiate()
+		death.global_position = global_position
+		get_tree().current_scene.add_child(death)
+	
+	if remove_on_death:
+		remove_on_death.queue_free()

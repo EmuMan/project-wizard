@@ -9,6 +9,10 @@ extends Area2D
 
 @export var explosion_scene: PackedScene
 
+func init_bullet(spawn_pos: Vector2, click_pos: Vector2) -> void:
+	global_position = spawn_pos
+	target_position = click_pos
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	body_entered.connect(_on_collide)

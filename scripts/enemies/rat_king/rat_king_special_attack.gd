@@ -20,9 +20,9 @@ func physics_update(_delta: float):
 	var target_y = randf_range(min_target.y, max_target.y)
 	var target_pos = Vector2(target_x, target_y)
 	
+	var shoot_point = enemy.find_child("ShootPoint").global_position
 	var bullet = bullet_scene.instantiate()
-	bullet.target_position = target_pos
-	bullet.global_position = enemy.global_position
+	bullet.init_bullet(shoot_point, target_pos)
 	get_tree().current_scene.add_child(bullet)
 	
 	has_shot = true
