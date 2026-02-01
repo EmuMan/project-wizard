@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://day4ftcyhano" path="res://scripts/status_effects/status_effect_manager.gd" id="11_d3wef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
-size = Vector2(15, 32)
+size = Vector2(15, 43)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4a1"]
 radius = 45.044422
@@ -32,11 +32,11 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_70d11")
 
 [node name="MaskSprite" type="Sprite2D" parent="."]
-position = Vector2(-1, -7)
+position = Vector2(1, -13)
 scale = Vector2(0.02, 0.02)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 10)
+position = Vector2(2.5, 13.5)
 shape = SubResource("RectangleShape2D_p0vlq")
 
 [node name="Wand" parent="." instance=ExtResource("4_mdl7e")]
@@ -48,7 +48,7 @@ bullet_scene = ExtResource("8_khinc")
 
 [node name="PickupArea" type="Area2D" parent="." groups=["Pickup"]]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_qu4a1")

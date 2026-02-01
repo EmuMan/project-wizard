@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds2qpf7hcopm3"]
+[gd_scene load_steps=6 format=3 uid="uid://ds2qpf7hcopm3"]
 
 [ext_resource type="Script" uid="uid://c0t34bwhc4s0k" path="res://Inventory/inventory_ui.gd" id="1_nyu7x"]
-[ext_resource type="Texture2D" uid="uid://b6528jybvudld" path="res://sprites/invslot.png" id="2_jgibs"]
 [ext_resource type="PackedScene" uid="uid://dsusbaha1vfa1" path="res://Inventory/inventory_slot.tscn" id="3_v30as"]
 [ext_resource type="PackedScene" uid="uid://bbncihjsiky5k" path="res://Inventory/InfoPanel.tscn" id="4_268sv"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="5_mf4s3"]
@@ -24,11 +23,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jgibs")
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+region_rect = Rect2(0, 0, 2048, 2048)
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.35276318, 0.55275196, 1, 1)
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
 layout_mode = 1
