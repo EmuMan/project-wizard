@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1c2b64d1f6vv"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_q45xy"]
+[ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_unm30"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_285q7"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_1wtmw"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_8icij"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_2bxgc"]
+[ext_resource type="Script" uid="uid://g2l1m82ac58f" path="res://scripts/enemies/generic_enemy_follow.gd" id="7_h4jq3"]
+[ext_resource type="Script" uid="uid://4mglqv6gwc0i" path="res://scripts/enemies/generic_enemy_shoot.gd" id="8_1nvrn"]
+[ext_resource type="PackedScene" uid="uid://cmxj6bi36nw0e" path="res://prefabs/bullets/enemy/enemy_ice_bullet.tscn" id="9_qy01c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dakbm"]
+radius = 19.53
+
+[node name="PenguinBaller" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_q45xy")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dakbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_unm30")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
+script = ExtResource("3_285q7")
+flash_on_damage = NodePath("../FlashOnDamage")
+remove_on_death = NodePath("..")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_1wtmw")
+sprite = NodePath("../Sprite2D")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_8icij")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_2bxgc")
+enemy = NodePath("../..")
+next_state_name = "FollowState"
+
+[node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_h4jq3")
+enemy = NodePath("../..")
+close_state = "ShootState"
+
+[node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_1nvrn")
+enemy = NodePath("../..")
+bullet_scene = ExtResource("9_qy01c")
+next_state_name = "FollowState"

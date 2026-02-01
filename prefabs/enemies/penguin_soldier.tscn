@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkf120ksnbcf0"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_4m1sr"]
+[ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_d2ms6"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_rxdny"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_e6ecw"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_8ywwo"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_rfaml"]
+[ext_resource type="Script" uid="uid://d1v31afms45hj" path="res://scripts/enemies/generic_enemy_wind_up.gd" id="7_e21iv"]
+[ext_resource type="Script" uid="uid://co6j0pu4sfak" path="res://scripts/enemies/penguin_soldier/penguin_soldier_charge.gd" id="8_d87vi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5dt1"]
+radius = 19.53
+
+[node name="PenguinSoldier" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_4m1sr")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_d5dt1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_d2ms6")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
+script = ExtResource("3_rxdny")
+flash_on_damage = NodePath("../FlashOnDamage")
+remove_on_death = NodePath("..")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_e6ecw")
+sprite = NodePath("../Sprite2D")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_8ywwo")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_rfaml")
+enemy = NodePath("../..")
+next_state_name = "WindUpState"
+
+[node name="WindUpState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_e21iv")
+enemy = NodePath("../..")
+next_state_name = "ChargeState"
+
+[node name="ChargeState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_d87vi")
+enemy = NodePath("../..")
+
+[connection signal="locked_on" from="StateMachine/WindUpState" to="StateMachine/ChargeState" method="_on_wind_up_state_locked_on"]

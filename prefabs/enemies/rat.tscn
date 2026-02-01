@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_u275g"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_ndaeq"]
 [ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_enemy_idle.gd" id="6_nhu62"]
-[ext_resource type="Script" uid="uid://cfb682vtfcn4n" path="res://scripts/enemies/rat/rat_follow.gd" id="7_aclqt"]
+[ext_resource type="Script" uid="uid://g2l1m82ac58f" path="res://scripts/enemies/generic_enemy_follow.gd" id="7_c7neh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_elbt7"]
 radius = 17.0
@@ -44,5 +44,7 @@ enemy = NodePath("../..")
 next_state_name = "FollowState"
 
 [node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_aclqt")
+script = ExtResource("7_c7neh")
 enemy = NodePath("../..")
+distance_kept = 0.0
+close_state = "FollowState"
