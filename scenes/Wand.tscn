@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw2jtubxjr1yh"]
+
+[ext_resource type="Script" uid="uid://ce7ubxpu1r8ce" path="res://scripts/wand.gd" id="1_r80e1"]
+
+[node name="Wand" type="Node2D"]
+script = ExtResource("1_r80e1")
+metadata/_edit_horizontal_guides_ = [-30.0]
+
+[node name="WandSprite" type="Sprite2D" parent="."]
+position = Vector2(50, 0)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+
+[node name="BulletScource" type="Node2D" parent="."]
+position = Vector2(69, 0)
