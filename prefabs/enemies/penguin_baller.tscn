@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://d1c2b64d1f6vv"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_q45xy"]
-[ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_unm30"]
+[ext_resource type="Texture2D" uid="uid://br4f7mfsi52kp" path="res://sprites/penguin_snowballer.png" id="2_q45xy"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_285q7"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_1wtmw"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_8icij"]
@@ -22,8 +22,8 @@ script = ExtResource("1_q45xy")
 shape = SubResource("CircleShape2D_dakbm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_unm30")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_q45xy")
 
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("3_285q7")
