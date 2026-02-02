@@ -26,6 +26,7 @@ Player=""
 Pickup=""
 RatBoss=""
 PengBoss=""
+Enemy=""
 
 [input]
 

@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5dt1"]
 radius = 19.53
 
-[node name="PenguinSoldier" type="CharacterBody2D"]
+[node name="PenguinSoldier" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_4m1sr")
