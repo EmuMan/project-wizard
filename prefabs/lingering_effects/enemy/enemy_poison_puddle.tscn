@@ -1,25 +1,26 @@
 [gd_scene load_steps=6 format=3 uid="uid://nnwylurh0swj"]
 
 [ext_resource type="Script" uid="uid://djm52fbgei76o" path="res://scripts/lingering_effects/poison_puddle.gd" id="1_imrsn"]
-[ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="2_8mnss"]
+[ext_resource type="Texture2D" uid="uid://hbv5xw5xt77a" path="res://sprites/green_puddle.png" id="2_yce1f"]
 [ext_resource type="AudioStream" uid="uid://cvj4qwocp80l1" path="res://sfx/rats/splat.wav" id="3_vubpv"]
 [ext_resource type="AudioStream" uid="uid://c3yxsmuf4und3" path="res://sfx/rats/sizzle.wav" id="4_yce1f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ya8ch"]
 radius = 165.68042
 
-[node name="PoisonPuddle" type="Area2D"]
+[node name="EnemyPoisonPuddle" type="Area2D"]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_imrsn")
+damage_amount = 5.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ya8ch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_8mnss")
+scale = Vector2(0.23535156, 0.23535156)
+texture = ExtResource("2_yce1f")
 
 [node name="SplatAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_vubpv")

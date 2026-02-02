@@ -69,7 +69,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
-max_value = 1000.0
+max_value = 500.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Walls" type="StaticBody2D" parent="."]

@@ -15,7 +15,7 @@ metadata/_edit_vertical_guides_ = [300.0]
 shape = SubResource("CircleShape2D_72c0x")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

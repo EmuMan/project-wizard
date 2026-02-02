@@ -64,5 +64,6 @@ next_state_name = "FollowState"
 
 [node name="TargetAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_t05vl")
+volume_db = -15.0
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]

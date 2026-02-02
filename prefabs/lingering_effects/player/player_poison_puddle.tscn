@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bln4uqn1c0m85"]
+
+[ext_resource type="Script" uid="uid://djm52fbgei76o" path="res://scripts/lingering_effects/poison_puddle.gd" id="1_l41oq"]
+[ext_resource type="Texture2D" uid="uid://hbv5xw5xt77a" path="res://sprites/green_puddle.png" id="2_fa8ns"]
+[ext_resource type="AudioStream" uid="uid://cvj4qwocp80l1" path="res://sfx/rats/splat.wav" id="3_1f8so"]
+[ext_resource type="AudioStream" uid="uid://c3yxsmuf4und3" path="res://sfx/rats/sizzle.wav" id="4_yoob3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ya8ch"]
+radius = 165.68042
+
+[node name="PlayerPoisonPuddle" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_l41oq")
+damage_amount = 5.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ya8ch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.23339844, 0.23339844)
+texture = ExtResource("2_fa8ns")
+
+[node name="SplatAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1f8so")
+autoplay = true
+
+[node name="SizzleAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yoob3")
+volume_db = -10.0
+autoplay = true

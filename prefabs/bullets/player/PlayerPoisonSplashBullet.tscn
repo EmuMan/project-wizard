@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgfetujwal8f1"]
+[gd_scene load_steps=5 format=3 uid="uid://dgfetujwal8f1"]
 
 [ext_resource type="Script" uid="uid://dbrdocet2etp4" path="res://scripts/bullets/targeted_bullet.gd" id="1_qsd1t"]
 [ext_resource type="Texture2D" uid="uid://dbfi0taljrdov" path="res://sprites/poison_bullet.png" id="2_qsd1t"]
+[ext_resource type="PackedScene" uid="uid://bln4uqn1c0m85" path="res://prefabs/lingering_effects/player/player_poison_puddle.tscn" id="2_w4n0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qsd1t"]
 radius = 29.5
@@ -10,6 +11,7 @@ radius = 29.5
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_qsd1t")
+explosion_scene = ExtResource("2_w4n0r")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qsd1t")
