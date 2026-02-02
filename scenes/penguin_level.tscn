@@ -1,16 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmp7d5vqg130w"]
+[gd_scene load_steps=10 format=3 uid="uid://dmp7d5vqg130w"]
 
+[ext_resource type="Script" uid="uid://drrattjncuj34" path="res://scenes/penguin_level.gd" id="1_7dhp3"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="1_dakbm"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_fj3pe"]
 [ext_resource type="PackedScene" uid="uid://dkf120ksnbcf0" path="res://prefabs/enemies/penguin_soldier.tscn" id="3_ycr3o"]
 [ext_resource type="PackedScene" uid="uid://d1c2b64d1f6vv" path="res://prefabs/enemies/penguin_baller.tscn" id="4_aqnk6"]
-[ext_resource type="PackedScene" uid="uid://4klx04u0tm1u" path="res://prefabs/enemies/emperor_penguin.tscn" id="5_aqnk6"]
+[ext_resource type="Texture2D" uid="uid://b3kfhjrjh4ts2" path="res://sprites/graybg.png" id="7_2t0l6"]
+[ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/EnemySpawn.tscn" id="8_mwcp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t0l6"]
+size = Vector2(1609, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwcp2"]
+size = Vector2(35, 1241.5)
 
 [node name="PenguinLevel" type="Node2D"]
+script = ExtResource("1_7dhp3")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_dakbm")
 target = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D/CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+max_value = 1000.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_fj3pe")]
 
@@ -20,4 +39,45 @@ position = Vector2(595, 199)
 [node name="PenguinBaller" parent="." instance=ExtResource("4_aqnk6")]
 position = Vector2(171, 307)
 
-[node name="EmperorPenguin" parent="." instance=ExtResource("5_aqnk6")]
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+offset_left = -1341.0
+offset_top = -782.0
+offset_right = 1303.0
+offset_bottom = 758.0
+texture = ExtResource("7_2t0l6")
+
+[node name="EnemySpawn" parent="." instance=ExtResource("8_mwcp2")]
+position = Vector2(-250, -200)
+
+[node name="EnemySpawn2" parent="." instance=ExtResource("8_mwcp2")]
+position = Vector2(-250, 200)
+
+[node name="EnemySpawn3" parent="." instance=ExtResource("8_mwcp2")]
+position = Vector2(250, 200)
+
+[node name="EnemySpawn4" parent="." instance=ExtResource("8_mwcp2")]
+position = Vector2(250, -200)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(14, 604)
+shape = SubResource("RectangleShape2D_2t0l6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(15, -611)
+shape = SubResource("RectangleShape2D_2t0l6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-773, 1)
+shape = SubResource("RectangleShape2D_mwcp2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(801, -5)
+shape = SubResource("RectangleShape2D_mwcp2")
+
+[connection signal="enemy_death" from="EnemySpawn" to="." method="_on_enemy_spawn_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn2" to="." method="_on_enemy_spawn_2_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn3" to="." method="_on_enemy_spawn_3_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn4" to="." method="_on_enemy_spawn_4_enemy_death"]

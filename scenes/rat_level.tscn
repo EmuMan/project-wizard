@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8a11q4oclpcq"]
+[gd_scene load_steps=10 format=3 uid="uid://b8a11q4oclpcq"]
 
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_7o84y"]
 [ext_resource type="Script" uid="uid://cf6op84e2eokt" path="res://scenes/rat_level.gd" id="1_ftu2j"]
 [ext_resource type="Texture2D" uid="uid://b3kfhjrjh4ts2" path="res://sprites/graybg.png" id="1_jb676"]
-[ext_resource type="PackedScene" uid="uid://b71glf4ej7dt6" path="res://prefabs/enemies/rat_king.tscn" id="2_wngk1"]
 [ext_resource type="PackedScene" uid="uid://copx7anmrlqul" path="res://prefabs/enemies/rat.tscn" id="3_6vmdf"]
 [ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://prefabs/enemies/rat_zombie.tscn" id="4_lteeu"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="5_lteeu"]
@@ -40,9 +39,6 @@ position = Vector2(250, -200)
 
 [node name="Player" parent="." instance=ExtResource("1_7o84y")]
 
-[node name="RatKing" parent="." instance=ExtResource("2_wngk1")]
-position = Vector2(541, 79)
-
 [node name="Rat" parent="." instance=ExtResource("3_6vmdf")]
 position = Vector2(116, 498)
 
@@ -61,6 +57,7 @@ anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
 max_value = 1000.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -79,3 +76,8 @@ shape = SubResource("RectangleShape2D_jb676")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
 position = Vector2(801, -5)
 shape = SubResource("RectangleShape2D_jb676")
+
+[connection signal="enemy_death" from="EnemySpawn" to="." method="_on_enemy_spawn_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn2" to="." method="_on_enemy_spawn_2_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn3" to="." method="_on_enemy_spawn_3_enemy_death"]
+[connection signal="enemy_death" from="EnemySpawn4" to="." method="_on_enemy_spawn_4_enemy_death"]

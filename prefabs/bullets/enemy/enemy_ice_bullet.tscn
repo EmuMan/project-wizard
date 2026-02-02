@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="1_c4itc"]
 [ext_resource type="Script" uid="uid://ckaq21ta58db4" path="res://scripts/status_effects/status_effect.gd" id="2_nllvo"]
-[ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://sprites/white_circle.png" id="3_345wp"]
 [ext_resource type="PackedScene" uid="uid://bm63kvbxord3a" path="res://prefabs/effects/bullet_hits/ice_bullet_hit.tscn" id="3_nllvo"]
+[ext_resource type="Texture2D" uid="uid://xgnhnjx6x14k" path="res://sprites/player_bullet.png" id="4_nllvo"]
 
 [sub_resource type="Resource" id="Resource_n1uvu"]
 script = ExtResource("2_nllvo")
@@ -29,5 +29,6 @@ explosion_scene = ExtResource("3_nllvo")
 shape = SubResource("CircleShape2D_8t61t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.16473973, 0.39774317, 1, 1)
 scale = Vector2(0.035, 0.035)
-texture = ExtResource("3_345wp")
+texture = ExtResource("4_nllvo")

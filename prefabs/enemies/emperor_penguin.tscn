@@ -15,7 +15,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqnk6"]
 radius = 55.145264
 
-[node name="EmperorPenguin" type="CharacterBody2D"]
+[node name="EmperorPenguin" type="CharacterBody2D" groups=["PengBoss"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_d4o3i")
@@ -30,6 +30,7 @@ texture = ExtResource("2_8gerx")
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("3_ndsgu")
 flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 50.0
 remove_on_death = NodePath("..")
 death_scene = ExtResource("4_8gerx")
 

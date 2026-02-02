@@ -15,7 +15,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyyer"]
 radius = 82.1523
 
-[node name="RatKing" type="CharacterBody2D"]
+[node name="RatKing" type="CharacterBody2D" groups=["RatBoss"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_ba74n")

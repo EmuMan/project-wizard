@@ -28,6 +28,7 @@ texture = ExtResource("2_unm30")
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("3_285q7")
 flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 30.0
 remove_on_death = NodePath("..")
 
 [node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
@@ -53,3 +54,5 @@ script = ExtResource("8_1nvrn")
 enemy = NodePath("../..")
 bullet_scene = ExtResource("9_qy01c")
 next_state_name = "FollowState"
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbrdocet2etp4" path="res://scripts/bullets/targeted_bullet.gd" id="1_fvyoj"]
 [ext_resource type="PackedScene" uid="uid://nnwylurh0swj" path="res://prefabs/lingering_effects/enemy/enemy_poison_puddle.tscn" id="2_m35o3"]
-[ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="3_es3dd"]
+[ext_resource type="Texture2D" uid="uid://dbfi0taljrdov" path="res://sprites/poison_bullet.png" id="3_fvyoj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xagxs"]
 radius = 29.5
@@ -19,4 +19,4 @@ shape = SubResource("CircleShape2D_xagxs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_es3dd")
+texture = ExtResource("3_fvyoj")

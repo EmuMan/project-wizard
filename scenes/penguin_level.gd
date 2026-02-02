@@ -4,17 +4,17 @@ extends Node2D
 const KILL_GOAL = 2
 
 @onready var progress_bar: ProgressBar = $Camera2D/CanvasLayer/ProgressBar
-var boss = preload("res://prefabs/enemies/rat_king.tscn")
+var boss = preload("res://prefabs/enemies/emperor_penguin.tscn")
 var kill_count = 0
-var rat_king: CharacterBody2D
+var emperor: CharacterBody2D
 var boss_spawned = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if !rat_king:
-		rat_king = get_tree().get_first_node_in_group("RatBoss")
-	if rat_king:
-		progress_bar.value = rat_king.health.health
+	if !emperor:
+		emperor = get_tree().get_first_node_in_group("PengBoss")
+	if emperor:
+		progress_bar.value = emperor.health.health
 	if kill_count >= KILL_GOAL and not boss_spawned:
 		print("spawned boss")
 		var boss_node = boss.instantiate()

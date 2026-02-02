@@ -24,6 +24,8 @@ SceneManager="*res://scripts/scene_manager.gd"
 
 Player=""
 Pickup=""
+RatBoss=""
+PengBoss=""
 
 [input]
 

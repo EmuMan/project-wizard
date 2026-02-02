@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgfetujwal8f1"]
 
-[ext_resource type="Texture2D" uid="uid://drtdpaig5vq23" path="res://sprites/green_circle.png" id="1_76gda"]
 [ext_resource type="Script" uid="uid://dbrdocet2etp4" path="res://scripts/bullets/targeted_bullet.gd" id="1_qsd1t"]
+[ext_resource type="Texture2D" uid="uid://dbfi0taljrdov" path="res://sprites/poison_bullet.png" id="2_qsd1t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qsd1t"]
 radius = 29.5
@@ -16,4 +16,4 @@ shape = SubResource("CircleShape2D_qsd1t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_76gda")
+texture = ExtResource("2_qsd1t")
