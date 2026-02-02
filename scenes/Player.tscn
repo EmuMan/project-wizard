@@ -44,7 +44,7 @@ shape = SubResource("RectangleShape2D_p0vlq")
 [node name="Wand" parent="." instance=ExtResource("4_mdl7e")]
 
 [node name="ShootPoint" type="Node2D" parent="Wand"]
-position = Vector2(65, 0)
+position = Vector2(112, 0)
 script = ExtResource("7_cw2d6")
 bullet_scene = ExtResource("8_khinc")
 rat_special_scene = ExtResource("9_o4126")

@@ -14,6 +14,7 @@ var time_since_last_ability: float
 
 func _physics_process(delta: float) -> void:
 	time_since_last_shot += delta
+	time_since_last_ability += delta
 	
 	if time_since_last_shot >= shoot_cooldown and Input.is_action_pressed("attack"):
 		shoot(get_global_mouse_position())
@@ -44,4 +45,5 @@ func special(click_pos: Vector2):
 			var bullet = penguin_special_scene.instantiate()
 			bullet.init_bullet(global_position, click_pos)
 			get_tree().current_scene.add_child(bullet)
+		
 		time_since_last_ability = 0.0

@@ -53,6 +53,7 @@ close_state = "ShootState"
 script = ExtResource("8_1nvrn")
 enemy = NodePath("../..")
 bullet_scene = ExtResource("9_qy01c")
+warmup_time = 0.5
 next_state_name = "FollowState"
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
