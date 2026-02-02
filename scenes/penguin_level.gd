@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const KILL_GOAL = 2
+const KILL_GOAL = 10
 
 @onready var progress_bar: ProgressBar = $Camera2D/CanvasLayer/ProgressBar
 var boss = preload("res://prefabs/enemies/emperor_penguin.tscn")

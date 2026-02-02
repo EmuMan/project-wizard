@@ -4,8 +4,8 @@ extends State
 
 @export var bullet_scene: PackedScene
 
-@export var min_target: Vector2 = Vector2(100, 300)
-@export var max_target: Vector2 = Vector2(900, 600)
+@export var min_target: Vector2 = Vector2(-500, -300)
+@export var max_target: Vector2 = Vector2(500, 300)
 
 var has_shot: bool
 
