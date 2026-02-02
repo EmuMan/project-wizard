@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8a11q4oclpcq"]
+[gd_scene load_steps=12 format=3 uid="uid://b8a11q4oclpcq"]
 
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_7o84y"]
 [ext_resource type="Script" uid="uid://cf6op84e2eokt" path="res://scenes/rat_level.gd" id="1_ftu2j"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://prefabs/enemies/rat_zombie.tscn" id="4_lteeu"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="5_lteeu"]
 [ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/EnemySpawn.tscn" id="7_8t1o2"]
+[ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="9_x2gav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lteeu"]
 size = Vector2(1609, 31)
@@ -89,6 +90,10 @@ shape = SubResource("RectangleShape2D_jb676")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
 position = Vector2(801, -5)
 shape = SubResource("RectangleShape2D_jb676")
+
+[node name="PlayRatsMusic" type="Node2D" parent="."]
+script = ExtResource("9_x2gav")
+music_name = "rats"
 
 [connection signal="enemy_death" from="EnemySpawn" to="." method="_on_enemy_spawn_enemy_death"]
 [connection signal="enemy_death" from="EnemySpawn2" to="." method="_on_enemy_spawn_2_enemy_death"]
