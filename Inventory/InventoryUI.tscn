@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds2qpf7hcopm3"]
+[gd_scene load_steps=7 format=3 uid="uid://ds2qpf7hcopm3"]
 
 [ext_resource type="Script" uid="uid://c0t34bwhc4s0k" path="res://Inventory/inventory_ui.gd" id="1_nyu7x"]
 [ext_resource type="PackedScene" uid="uid://dsusbaha1vfa1" path="res://Inventory/inventory_slot.tscn" id="3_v30as"]
 [ext_resource type="PackedScene" uid="uid://bbncihjsiky5k" path="res://Inventory/InfoPanel.tscn" id="4_268sv"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="5_mf4s3"]
 [ext_resource type="Texture2D" uid="uid://b2w2vwq1otdj2" path="res://sprites/arrow.png" id="5_s55ce"]
+[ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="6_s55ce"]
 
 [node name="InventoryUi" type="Control"]
 layout_mode = 3
@@ -183,6 +184,9 @@ visible = false
 top_level = true
 z_index = 1000
 scale = Vector2(0.1, 0.1)
+
+[node name="PlayMenuMusic" type="Node2D" parent="."]
+script = ExtResource("6_s55ce")
 
 [connection signal="gui_input" from="NinePatchRect/HBoxContainer/PrevLevelContainer" to="." method="_on_prev_level_container_gui_input"]
 [connection signal="gui_input" from="NinePatchRect/HBoxContainer/NextLevelContainer" to="." method="_on_next_level_container_gui_input"]

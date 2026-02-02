@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cq3s6lasbbkqq"
+path="res://.godot/imported/Tuxedo Takeover.ogg-21adebf3fc4b131c3b72936046076e2c.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Tuxedo Takeover.ogg"
+dest_files=["res://.godot/imported/Tuxedo Takeover.ogg-21adebf3fc4b131c3b72936046076e2c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
