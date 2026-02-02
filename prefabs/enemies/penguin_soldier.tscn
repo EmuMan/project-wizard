@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dkf120ksnbcf0"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_4m1sr"]
-[ext_resource type="Texture2D" uid="uid://drfcby7qg8d1n" path="res://icon.svg" id="2_d2ms6"]
+[ext_resource type="Texture2D" uid="uid://vhdtpfvwu86m" path="res://sprites/penguin_soldier.png" id="2_d2ms6"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_rxdny"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_e6ecw"]
 [ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_8ywwo"]
@@ -23,7 +23,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_d5dt1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("2_d2ms6")
 
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
