@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdkcgr3uabc1y"]
+
+[ext_resource type="Script" uid="uid://cfo8qktorga2j" path="res://scripts/staffs/test_staff.gd" id="1_dde5b"]
+[ext_resource type="Texture2D" uid="uid://c7nuokvgunqrj" path="res://assets/sprites/placeholder/wand.png" id="1_laq2k"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://resources/items/stickwand.tres" id="2_plmjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laq2k"]
+size = Vector2(14.071069, 48.790375)
+
+[node name="TestWand" type="StaticBody2D"]
+script = ExtResource("1_dde5b")
+item = ExtResource("2_plmjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.7853982
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_laq2k")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(0.27512646, -0.22487354)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_laq2k")
+
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]

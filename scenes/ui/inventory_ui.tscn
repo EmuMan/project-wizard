@@ -1,0 +1,192 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds2qpf7hcopm3"]
+
+[ext_resource type="Script" uid="uid://c0t34bwhc4s0k" path="res://scripts/ui/inventory_ui.gd" id="1_pphwo"]
+[ext_resource type="PackedScene" uid="uid://dsusbaha1vfa1" path="res://scenes/ui/inventory_slot.tscn" id="2_ju6sq"]
+[ext_resource type="PackedScene" uid="uid://bbncihjsiky5k" path="res://scenes/ui/info_panel.tscn" id="3_inc1q"]
+[ext_resource type="Texture2D" uid="uid://b2w2vwq1otdj2" path="res://assets/sprites/ui/arrow.png" id="4_s728e"]
+[ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/player/player.tscn" id="5_vu0ua"]
+[ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="6_3xan3"]
+
+[node name="InventoryUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pphwo")
+metadata/_edit_horizontal_guides_ = [324.0]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+region_rect = Rect2(0, 0, 2048, 2048)
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.35276318, 0.55275196, 1, 1)
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -498.0
+offset_top = 83.0
+offset_right = 498.0
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="InventorySlot1" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="NinePatchRect/GridContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="InfoPanel" parent="NinePatchRect" instance=ExtResource("3_inc1q")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -509.0
+offset_right = 508.0
+offset_bottom = 80.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 67.0
+offset_top = 40.0
+offset_right = -68.0
+offset_bottom = 322.0
+grow_horizontal = 2
+
+[node name="PrevLevelContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="PrevPanel" type="Panel" parent="NinePatchRect/HBoxContainer/PrevLevelContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/PrevLevelContainer/PrevPanel"]
+scale = Vector2(0.066, 0.066)
+texture = ExtResource("4_s728e")
+flip_h = true
+
+[node name="MaskContiner" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+
+[node name="MaskSlot" parent="NinePatchRect/HBoxContainer/MaskContiner" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="PlayerContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container" type="Panel" parent="NinePatchRect/HBoxContainer/PlayerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player" parent="NinePatchRect/HBoxContainer/PlayerContainer/Container" instance=ExtResource("5_vu0ua")]
+scale = Vector2(3, 3)
+slide_on_ceiling = false
+
+[node name="WandContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+
+[node name="WandSlot" parent="NinePatchRect/HBoxContainer/WandContainer" instance=ExtResource("2_ju6sq")]
+layout_mode = 2
+
+[node name="NextLevelContainer" type="CenterContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NinePatchRect/HBoxContainer/NextLevelContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/NextLevelContainer/Panel"]
+scale = Vector2(0.06640625, 0.06640625)
+texture = ExtResource("4_s728e")
+
+[node name="HeldItem" type="Sprite2D" parent="."]
+visible = false
+top_level = true
+z_index = 1000
+scale = Vector2(0.1, 0.1)
+
+[node name="PlayMenuMusic" type="Node2D" parent="."]
+script = ExtResource("6_3xan3")
+
+[connection signal="gui_input" from="NinePatchRect/HBoxContainer/PrevLevelContainer" to="." method="_on_prev_level_container_gui_input"]
+[connection signal="gui_input" from="NinePatchRect/HBoxContainer/NextLevelContainer" to="." method="_on_next_level_container_gui_input"]

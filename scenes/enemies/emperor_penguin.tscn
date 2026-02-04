@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://4klx04u0tm1u"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_d4o3i"]
+[ext_resource type="Texture2D" uid="uid://bmhi8awrcvh22" path="res://assets/sprites/enemies/penguins/emperor_penguin.png" id="2_8gerx"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_ndsgu"]
+[ext_resource type="PackedScene" uid="uid://fr5gbh3p2kvc" path="res://scenes/masks/penguin_mask.tscn" id="4_8gerx"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_lnio3"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_5vyij"]
+[ext_resource type="Script" uid="uid://4mglqv6gwc0i" path="res://scripts/enemies/generic_states/enemy_shoot.gd" id="6_j4xqk"]
+[ext_resource type="PackedScene" uid="uid://cmxj6bi36nw0e" path="res://scenes/bullets/enemy/enemy_ice_bullet.tscn" id="7_dtpfp"]
+[ext_resource type="Script" uid="uid://d1v31afms45hj" path="res://scripts/enemies/generic_states/enemy_wind_up.gd" id="8_6dclg"]
+[ext_resource type="Script" uid="uid://esjm1raf6jwv" path="res://scripts/enemies/emperor_penguin/emperor_penguin_ice_rain.gd" id="9_xuegi"]
+[ext_resource type="PackedScene" uid="uid://31nvausgd6ei" path="res://scenes/lingering_effects/enemy/enemy_falling_icicle.tscn" id="10_8w2ch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqnk6"]
+radius = 55.145264
+
+[node name="EmperorPenguin" type="CharacterBody2D" groups=["PengBoss"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_d4o3i")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aqnk6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.061523438, 0.061523438)
+texture = ExtResource("2_8gerx")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
+script = ExtResource("3_ndsgu")
+flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 1000.0
+remove_on_death = NodePath("..")
+death_scene = ExtResource("4_8gerx")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_lnio3")
+sprite = NodePath("../Sprite2D")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_5vyij")
+initial_state = NodePath("ShootState")
+
+[node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_j4xqk")
+enemy = NodePath("../..")
+bullet_scene = ExtResource("7_dtpfp")
+warmup_time = 1.0
+shot_count_max = 20
+shot_count_min = 10
+no_target_state_name = "ShootState"
+next_state_name = "WindUpState"
+
+[node name="WindUpState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_6dclg")
+enemy = NodePath("../..")
+wobble_time = 1.0
+next_state_name = "IceRainState"
+
+[node name="IceRainState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("9_xuegi")
+enemy = NodePath("../..")
+icicle_scene = ExtResource("10_8w2ch")
+icicle_count = 10

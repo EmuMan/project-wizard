@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var inventory: Inventory = preload("res://Inventory/PlayerInventory.tres")
+@onready var inventory: Inventory = preload("uid://bj2l5cejwy851")
 @export var bullet_scene: PackedScene
 @export var rat_special_scene: PackedScene
 @export var penguin_special_scene: PackedScene

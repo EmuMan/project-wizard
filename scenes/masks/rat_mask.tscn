@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8ua0icrqukqy"]
+
+[ext_resource type="Texture2D" uid="uid://dcoe1jg0cqxvv" path="res://assets/sprites/masks/rat_mask.png" id="1_jdtwb"]
+[ext_resource type="Script" uid="uid://38yhes03lt1v" path="res://scripts/masks/rat_mask.gd" id="1_kjvpt"]
+[ext_resource type="Resource" uid="uid://wwnkio7bwli" path="res://resources/items/ratmask.tres" id="2_0f4ax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdtwb"]
+radius = 18.0
+
+[node name="RatMask" type="StaticBody2D"]
+script = ExtResource("1_kjvpt")
+item = ExtResource("2_0f4ax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_jdtwb")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_jdtwb")
+
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]

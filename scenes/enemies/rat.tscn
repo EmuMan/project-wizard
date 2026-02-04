@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://copx7anmrlqul"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_c7neh"]
+[ext_resource type="Texture2D" uid="uid://dg8ev21jrc2ig" path="res://assets/sprites/enemies/rats/rat.png" id="2_c7neh"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_myk3o"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_u275g"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_ndaeq"]
+[ext_resource type="Script" uid="uid://dh1rqhonljbx6" path="res://scripts/enemies/generic_states/enemy_idle.gd" id="6_nhu62"]
+[ext_resource type="Script" uid="uid://g2l1m82ac58f" path="res://scripts/enemies/generic_states/enemy_follow.gd" id="7_c7neh"]
+[ext_resource type="AudioStream" uid="uid://bm5bwsk0xxjuo" path="res://assets/sfx/rats/rat_squeak_1.wav" id="8_3tees"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elbt7"]
+radius = 17.0
+
+[node name="Rat" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_c7neh")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_elbt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.9999998, 6.9999995)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_c7neh")
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_myk3o")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
+script = ExtResource("4_u275g")
+flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 50.0
+remove_on_death = NodePath("..")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_ndaeq")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_nhu62")
+enemy = NodePath("../..")
+next_state_name = "FollowState"
+
+[node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy", "target_audio_player")]
+script = ExtResource("7_c7neh")
+enemy = NodePath("../..")
+target_audio_player = NodePath("../../TargetAudioPlayer")
+distance_kept = 0.0
+close_state = "FollowState"
+
+[node name="TargetAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_3tees")
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]

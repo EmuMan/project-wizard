@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv8b00vni80ar"]
+
+[ext_resource type="AudioStream" uid="uid://mflg07b2t3y4" path="res://assets/music/Project Wizard.ogg" id="1_86cwe"]
+[ext_resource type="Script" uid="uid://27wfqsn0fqdt" path="res://autoloads/music_controller.gd" id="1_aba1o"]
+[ext_resource type="AudioStream" uid="uid://2lg63jd27i31" path="res://assets/music/Rats Rats.ogg" id="2_nuwea"]
+[ext_resource type="AudioStream" uid="uid://cq3s6lasbbkqq" path="res://assets/music/Tuxedo Takeover.ogg" id="3_a2hxn"]
+[ext_resource type="AudioStream" uid="uid://b4ydg8lobwx17" path="res://assets/music/Mask of the Bandits.ogg" id="4_0i0nx"]
+
+[node name="MusicController" type="Node"]
+script = ExtResource("1_aba1o")
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_86cwe")
+autoplay = true
+max_distance = 4096.0
+attenuation = 0.00036535095
+parameters/looping = true
+
+[node name="RatsMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nuwea")
+autoplay = true
+parameters/looping = true
+
+[node name="PenguinsMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a2hxn")
+autoplay = true
+parameters/looping = true
+
+[node name="RaccoonsMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0i0nx")
+autoplay = true
+parameters/looping = true
