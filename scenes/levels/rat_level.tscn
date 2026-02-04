@@ -1,15 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8a11q4oclpcq"]
+[gd_scene load_steps=17 format=3 uid="uid://b8a11q4oclpcq"]
 
-[ext_resource type="Script" uid="uid://cf6op84e2eokt" path="res://scripts/levels/rat_level.gd" id="1_imuen"]
+[ext_resource type="Script" uid="uid://4nc2gtgefqq1" path="res://scripts/levels/generic_level.gd" id="1_see1b"]
+[ext_resource type="PackedScene" uid="uid://b71glf4ej7dt6" path="res://scenes/enemies/rat_king.tscn" id="2_dc1j1"]
 [ext_resource type="Texture2D" uid="uid://dnxddsn2b58wd" path="res://assets/sprites/environment/rat_level/cobblestone_floor.png" id="2_see1b"]
 [ext_resource type="Texture2D" uid="uid://cuho5i5ag4boi" path="res://assets/sprites/environment/rat_level/goop_water.png" id="3_dc1j1"]
 [ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/enemy_spawn_area.tscn" id="4_d6dt2"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/player/player.tscn" id="5_rqcw1"]
+[ext_resource type="Script" uid="uid://0fgj4yp5poyy" path="res://resources/enemy_spawn_data_resource.gd" id="5_see1b"]
 [ext_resource type="PackedScene" uid="uid://copx7anmrlqul" path="res://scenes/enemies/rat.tscn" id="6_h5bkh"]
 [ext_resource type="PackedScene" uid="uid://7npbhv7up8w" path="res://scenes/enemies/rat_zombie.tscn" id="7_003oo"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="8_3blf2"]
 [ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="9_wf3wq"]
 [ext_resource type="Texture2D" uid="uid://0eye8wocvn1b" path="res://assets/sprites/environment/rat_level/sewer_pipe.png" id="10_o0awi"]
+
+[sub_resource type="Resource" id="Resource_dc1j1"]
+script = ExtResource("5_see1b")
+enemy_scene = ExtResource("6_h5bkh")
+metadata/_custom_type_script = "uid://0fgj4yp5poyy"
+
+[sub_resource type="Resource" id="Resource_see1b"]
+script = ExtResource("5_see1b")
+enemy_scene = ExtResource("7_003oo")
+metadata/_custom_type_script = "uid://0fgj4yp5poyy"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lteeu"]
 size = Vector2(1609, 31)
@@ -18,7 +30,8 @@ size = Vector2(1609, 31)
 size = Vector2(35, 1241.5)
 
 [node name="RatLevel" type="Node2D"]
-script = ExtResource("1_imuen")
+script = ExtResource("1_see1b")
+boss_scene = ExtResource("2_dc1j1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -3
@@ -41,24 +54,22 @@ patch_margin_right = 610
 patch_margin_bottom = 410
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_d6dt2")]
-position = Vector2(-250, -200)
+position = Vector2(-246, -212)
+spawn_pool = Array[ExtResource("5_see1b")]([SubResource("Resource_dc1j1"), SubResource("Resource_see1b")])
 
 [node name="EnemySpawn2" parent="." instance=ExtResource("4_d6dt2")]
-position = Vector2(-250, 200)
+position = Vector2(255, -204)
+spawn_pool = Array[ExtResource("5_see1b")]([SubResource("Resource_dc1j1"), SubResource("Resource_see1b")])
 
 [node name="EnemySpawn3" parent="." instance=ExtResource("4_d6dt2")]
-position = Vector2(250, 200)
+position = Vector2(-255, 198)
+spawn_pool = Array[ExtResource("5_see1b")]([SubResource("Resource_dc1j1"), SubResource("Resource_see1b")])
 
 [node name="EnemySpawn4" parent="." instance=ExtResource("4_d6dt2")]
-position = Vector2(250, -200)
+position = Vector2(247, 205)
+spawn_pool = Array[ExtResource("5_see1b")]([SubResource("Resource_dc1j1"), SubResource("Resource_see1b")])
 
 [node name="Player" parent="." instance=ExtResource("5_rqcw1")]
-
-[node name="Rat" parent="." instance=ExtResource("6_h5bkh")]
-position = Vector2(116, 498)
-
-[node name="RatZombie" parent="." instance=ExtResource("7_003oo")]
-position = Vector2(479, 267)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("8_3blf2")
@@ -71,7 +82,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
-max_value = 500.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Walls" type="StaticBody2D" parent="."]

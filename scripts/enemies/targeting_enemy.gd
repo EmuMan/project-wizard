@@ -7,8 +7,6 @@ class_name TargetingEnemy
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health: Health = $Health
 
-signal death
-
 var target: Node2D
 
 var original_x_scale: float = 1.0
@@ -17,6 +15,7 @@ var target_flip_value: float = 1.0
 
 func _ready() -> void:
 	original_x_scale = sprite.scale.x
+	health.death.connect(_on_health_death)
 
 func _process(delta: float) -> void:
 	progress_flip(delta * flip_speed)
@@ -50,5 +49,5 @@ func progress_flip(delta: float):
 	current_flip_value = move_toward(current_flip_value, target_flip_value, delta)
 	sprite.scale.x = original_x_scale * current_flip_value
 
-func _on_health_died() -> void:
-	death.emit()
+func _on_health_death() -> void:
+	Game.enemy_death.emit()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmxj6bi36nw0e"]
 
 [ext_resource type="Script" uid="uid://dpqq54xfeehaq" path="res://scripts/bullets/simple_bullet.gd" id="1_c4itc"]
-[ext_resource type="Script" uid="uid://ckaq21ta58db4" path="res://scripts/status_effects/status_effect.gd" id="2_nllvo"]
+[ext_resource type="Script" uid="uid://ckaq21ta58db4" path="res://resources/status_effect_resource.gd" id="2_nllvo"]
 [ext_resource type="PackedScene" uid="uid://bm63kvbxord3a" path="res://scenes/effects/bullet_hits/ice_bullet_hit.tscn" id="3_nllvo"]
 [ext_resource type="Texture2D" uid="uid://xgnhnjx6x14k" path="res://assets/sprites/attacks/player_bullet.png" id="4_nllvo"]
 

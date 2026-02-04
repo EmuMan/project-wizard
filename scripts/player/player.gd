@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 		mask_sprite.texture = mask.texture
 	if wand and !wand_node.wand:
 		wand_node.wand = wand
-	progress_bar.value = health.health
+	progress_bar.value = health.get_percentage()
 
 func take_damage(amount: float, tick_count: int, time_between_ticks: float, source: String) -> void:
 	health.take_damage_over_time(amount, tick_count, time_between_ticks, source)

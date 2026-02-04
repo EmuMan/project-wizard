@@ -25,9 +25,8 @@ Game="*res://autoloads/game.gd"
 
 Player=""
 Pickup=""
-RatBoss=""
-PengBoss=""
 Enemy=""
+Bosses=""
 
 [input]
 

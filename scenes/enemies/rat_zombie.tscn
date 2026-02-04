@@ -16,7 +16,7 @@ radius = 17.0
 
 [node name="RatZombie" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_mbihw")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
@@ -36,7 +36,7 @@ sprite = NodePath("../Sprite2D")
 position = Vector2(-238, 0)
 script = ExtResource("4_3w5oy")
 flash_on_damage = NodePath("../FlashOnDamage")
-max_health = 50.0
+max_health = 30.0
 remove_on_death = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
@@ -53,17 +53,16 @@ next_state_name = "FollowState"
 script = ExtResource("7_mbihw")
 enemy = NodePath("../..")
 target_audio_player = NodePath("../../TargetAudioPlayer")
+distance_kept = 200.0
 close_state = "ShootState"
 
 [node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_t05vl")
 enemy = NodePath("../..")
 bullet_scene = ExtResource("9_rw8yg")
-warmup_time = 1.5
+warmup_time = 1.0
 next_state_name = "FollowState"
 
 [node name="TargetAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_t05vl")
 volume_db = -15.0
-
-[connection signal="died" from="Health" to="." method="_on_health_died"]

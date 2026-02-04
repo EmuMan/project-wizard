@@ -47,6 +47,7 @@ next_state_name = "FollowState"
 [node name="FollowState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_h4jq3")
 enemy = NodePath("../..")
+distance_kept = 200.0
 close_state = "ShootState"
 
 [node name="ShootState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
@@ -55,5 +56,3 @@ enemy = NodePath("../..")
 bullet_scene = ExtResource("9_qy01c")
 warmup_time = 0.5
 next_state_name = "FollowState"
-
-[connection signal="died" from="Health" to="." method="_on_health_died"]

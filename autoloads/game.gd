@@ -1,5 +1,7 @@
 extends Node
 
+signal enemy_death(enemy: Node)
+
 var current_level = 0
 var level_count = 3
 

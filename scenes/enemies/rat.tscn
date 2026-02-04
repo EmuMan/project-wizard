@@ -14,7 +14,7 @@ radius = 17.0
 
 [node name="Rat" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_c7neh")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
@@ -32,7 +32,7 @@ sprite = NodePath("../Sprite2D")
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
 script = ExtResource("4_u275g")
 flash_on_damage = NodePath("../FlashOnDamage")
-max_health = 50.0
+max_health = 40.0
 remove_on_death = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
@@ -53,5 +53,3 @@ close_state = "FollowState"
 
 [node name="TargetAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_3tees")
-
-[connection signal="died" from="Health" to="." method="_on_health_died"]

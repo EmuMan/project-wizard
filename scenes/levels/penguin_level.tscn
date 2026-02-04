@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmp7d5vqg130w"]
+[gd_scene load_steps=17 format=3 uid="uid://dmp7d5vqg130w"]
 
-[ext_resource type="Script" uid="uid://drrattjncuj34" path="res://scripts/levels/penguin_level.gd" id="1_p80mj"]
+[ext_resource type="Script" uid="uid://4nc2gtgefqq1" path="res://scripts/levels/generic_level.gd" id="1_3q77h"]
 [ext_resource type="Texture2D" uid="uid://ciom5214dvfio" path="res://assets/sprites/environment/penguin_level/ice_floor.png" id="2_3q77h"]
+[ext_resource type="PackedScene" uid="uid://4klx04u0tm1u" path="res://scenes/enemies/emperor_penguin.tscn" id="2_ou05b"]
 [ext_resource type="Texture2D" uid="uid://gurhrrcqrehc" path="res://assets/sprites/environment/penguin_level/ice_wall.png" id="3_ou05b"]
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="4_eronv"]
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/player/player.tscn" id="5_hh1qd"]
@@ -9,8 +10,19 @@
 [ext_resource type="PackedScene" uid="uid://d1c2b64d1f6vv" path="res://scenes/enemies/penguin_baller.tscn" id="7_ora2q"]
 [ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/enemy_spawn_area.tscn" id="8_jwwxx"]
 [ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="9_cbi7q"]
+[ext_resource type="Script" uid="uid://0fgj4yp5poyy" path="res://resources/enemy_spawn_data_resource.gd" id="10_ou05b"]
 
 [sub_resource type="Theme" id="Theme_mwcp2"]
+
+[sub_resource type="Resource" id="Resource_eronv"]
+script = ExtResource("10_ou05b")
+enemy_scene = ExtResource("6_71pnn")
+metadata/_custom_type_script = "uid://0fgj4yp5poyy"
+
+[sub_resource type="Resource" id="Resource_hh1qd"]
+script = ExtResource("10_ou05b")
+enemy_scene = ExtResource("7_ora2q")
+metadata/_custom_type_script = "uid://0fgj4yp5poyy"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2t0l6"]
 size = Vector2(1609, 31)
@@ -19,7 +31,8 @@ size = Vector2(1609, 31)
 size = Vector2(35, 1241.5)
 
 [node name="PenguinLevel" type="Node2D"]
-script = ExtResource("1_p80mj")
+script = ExtResource("1_3q77h")
+boss_scene = ExtResource("2_ou05b")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.6317153, 0.63171524, 0.63171524, 1)
@@ -67,16 +80,20 @@ position = Vector2(595, 199)
 position = Vector2(171, 307)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("8_jwwxx")]
-position = Vector2(-250, -200)
+position = Vector2(-462, -340)
+spawn_pool = Array[ExtResource("10_ou05b")]([SubResource("Resource_eronv"), SubResource("Resource_hh1qd")])
 
 [node name="EnemySpawn2" parent="." instance=ExtResource("8_jwwxx")]
-position = Vector2(-250, 200)
+position = Vector2(524, -352)
+spawn_pool = Array[ExtResource("10_ou05b")]([SubResource("Resource_eronv"), SubResource("Resource_hh1qd")])
 
 [node name="EnemySpawn3" parent="." instance=ExtResource("8_jwwxx")]
-position = Vector2(250, 200)
+position = Vector2(-481, 412)
+spawn_pool = Array[ExtResource("10_ou05b")]([SubResource("Resource_eronv"), SubResource("Resource_hh1qd")])
 
 [node name="EnemySpawn4" parent="." instance=ExtResource("8_jwwxx")]
-position = Vector2(250, -200)
+position = Vector2(559, 371)
+spawn_pool = Array[ExtResource("10_ou05b")]([SubResource("Resource_eronv"), SubResource("Resource_hh1qd")])
 
 [node name="Walls" type="StaticBody2D" parent="."]
 

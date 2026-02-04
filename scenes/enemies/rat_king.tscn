@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b71glf4ej7dt6"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_ba74n"]
-[ext_resource type="Texture2D" uid="uid://dbijomanfq854" path="res://assets/sprites/enemies/rats/rat_king.png" id="2_2e3ci"]
+[ext_resource type="Texture2D" uid="uid://7wp4x76wt0ec" path="res://assets/sprites/enemies/rats/rat_king.png" id="2_2e3ci"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_eqsxg"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_bgppb"]
 [ext_resource type="PackedScene" uid="uid://b8ua0icrqukqy" path="res://scenes/masks/rat_mask.tscn" id="5_2e3ci"]
@@ -15,9 +15,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyyer"]
 radius = 82.1523
 
-[node name="RatKing" type="CharacterBody2D" groups=["RatBoss"]]
+[node name="RatKing" type="CharacterBody2D" groups=["Bosses"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_ba74n")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

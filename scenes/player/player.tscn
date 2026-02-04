@@ -9,10 +9,10 @@
 [ext_resource type="Script" uid="uid://fuchnqqtg04t" path="res://scripts/player/player_shoot.gd" id="7_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://ck3630vilislo" path="res://scenes/bullets/player/player_simple_bullet.tscn" id="8_khinc"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="9_6eyey"]
-[ext_resource type="PackedScene" uid="uid://dgfetujwal8f1" path="res://scenes/bullets/player/PlayerPoisonSplashBullet.tscn" id="9_o4126"]
+[ext_resource type="PackedScene" uid="uid://dgfetujwal8f1" path="res://scenes/bullets/player/player_poison_splash_bullet.tscn" id="9_o4126"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="10_d3wef"]
-[ext_resource type="PackedScene" uid="uid://co840tqphhpgl" path="res://scenes/bullets/player/PlayerIceBullet.tscn" id="10_lkdrv"]
-[ext_resource type="Script" uid="uid://day4ftcyhano" path="res://scripts/status_effects/status_effect_manager.gd" id="11_d3wef"]
+[ext_resource type="PackedScene" uid="uid://co840tqphhpgl" path="res://scenes/bullets/player/player_ice_bullet.tscn" id="10_lkdrv"]
+[ext_resource type="Script" uid="uid://day4ftcyhano" path="res://scripts/status_effect_manager.gd" id="11_d3wef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
 size = Vector2(15, 43)
