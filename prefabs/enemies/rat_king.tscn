@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b71glf4ej7dt6"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_ba74n"]
-[ext_resource type="Texture2D" uid="uid://dbijomanfq854" path="res://sprites/rats/rat_king.png" id="2_ba74n"]
+[ext_resource type="Texture2D" uid="uid://7wp4x76wt0ec" path="res://sprites/rat_king.png" id="2_2e3ci"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_eqsxg"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_bgppb"]
 [ext_resource type="PackedScene" uid="uid://b8ua0icrqukqy" path="res://scenes/RatMask.tscn" id="5_2e3ci"]
@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_lyyer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ba74n")
+texture = ExtResource("2_2e3ci")
 
 [node name="ShootPoint" type="Node2D" parent="Sprite2D"]
 position = Vector2(-879.99994, -819.99994)

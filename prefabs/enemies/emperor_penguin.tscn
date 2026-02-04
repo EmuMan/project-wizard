@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://4klx04u0tm1u"]
 
 [ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_d4o3i"]
-[ext_resource type="Texture2D" uid="uid://64jtjofesntb" path="res://sprites/sasa.png" id="2_8gerx"]
+[ext_resource type="Texture2D" uid="uid://bmhi8awrcvh22" path="res://sprites/emperor_penguin.png" id="2_8gerx"]
 [ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="3_ndsgu"]
 [ext_resource type="PackedScene" uid="uid://fr5gbh3p2kvc" path="res://scenes/EmperorMask.tscn" id="4_8gerx"]
 [ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="4_lnio3"]
@@ -24,7 +24,7 @@ script = ExtResource("1_d4o3i")
 shape = SubResource("CircleShape2D_aqnk6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.32, 0.32)
+scale = Vector2(0.061523438, 0.061523438)
 texture = ExtResource("2_8gerx")
 
 [node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]

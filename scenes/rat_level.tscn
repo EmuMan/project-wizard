@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8a11q4oclpcq"]
+[gd_scene load_steps=13 format=3 uid="uid://b8a11q4oclpcq"]
 
 [ext_resource type="PackedScene" uid="uid://cqnuyeunopyv7" path="res://scenes/Player.tscn" id="1_7o84y"]
 [ext_resource type="Script" uid="uid://cf6op84e2eokt" path="res://scenes/rat_level.gd" id="1_ftu2j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1st0tgw0aisl" path="res://scripts/simple_camera_follow.gd" id="5_lteeu"]
 [ext_resource type="PackedScene" uid="uid://d4ljifycv6b7v" path="res://scenes/EnemySpawn.tscn" id="7_8t1o2"]
 [ext_resource type="Script" uid="uid://dyhtwt30hu463" path="res://scripts/switch_music_on_ready.gd" id="9_x2gav"]
+[ext_resource type="Texture2D" uid="uid://0eye8wocvn1b" path="res://sprites/sewer_pipe.png" id="10_gmrny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lteeu"]
 size = Vector2(1609, 31)
@@ -20,7 +21,7 @@ size = Vector2(35, 1241.5)
 script = ExtResource("1_ftu2j")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -1026.0
 offset_top = -1040.0
 offset_right = 1022.0
@@ -94,6 +95,30 @@ shape = SubResource("RectangleShape2D_jb676")
 [node name="PlayRatsMusic" type="Node2D" parent="."]
 script = ExtResource("9_x2gav")
 music_name = "rats"
+
+[node name="SewerPipe" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-246, -213)
+scale = Vector2(0.09179688, 0.09179688)
+texture = ExtResource("10_gmrny")
+
+[node name="SewerPipe2" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-253, 197)
+scale = Vector2(0.09179688, 0.09179688)
+texture = ExtResource("10_gmrny")
+
+[node name="SewerPipe3" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(255, -207)
+scale = Vector2(0.09179688, 0.09179688)
+texture = ExtResource("10_gmrny")
+
+[node name="SewerPipe4" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(248, 203)
+scale = Vector2(0.09179688, 0.09179688)
+texture = ExtResource("10_gmrny")
 
 [connection signal="enemy_death" from="EnemySpawn" to="." method="_on_enemy_spawn_enemy_death"]
 [connection signal="enemy_death" from="EnemySpawn2" to="." method="_on_enemy_spawn_2_enemy_death"]
