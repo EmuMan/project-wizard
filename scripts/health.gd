@@ -2,7 +2,7 @@ extends Node2D
 class_name Health
 
 signal took_damage(amount: float)
-signal died
+signal death
 
 @export var flash_on_damage: FlashOnDamage
 
@@ -11,7 +11,7 @@ signal died
 @export var remove_on_death: Node
 @export var death_scene: PackedScene
 
-var health: float
+var current_health: float
 var alive: bool
 
 var special_damage_cooldowns: Dictionary[String, float] = {
@@ -21,7 +21,7 @@ var special_damage_cooldowns: Dictionary[String, float] = {
 var special_damage_timers: Dictionary[String, float]
 
 func _ready() -> void:
-	health = max_health
+	current_health = max_health
 	alive = true
 	special_damage_timers = {}
 	for damage_name in special_damage_cooldowns.keys():
@@ -42,13 +42,13 @@ func take_damage_once(amount: float, source: String) -> void:
 			return
 		special_damage_timers[source] = 0.0
 	
-	health -= amount
+	current_health -= amount
 	took_damage.emit(amount)
 	
 	if flash_on_damage:
 		flash_on_damage.flash()
 	
-	if health <= 0:
+	if current_health <= 0:
 		die()
 
 func take_damage_over_time(amount: float, tick_count: int, time_per_tick: float, source: String) -> void:
@@ -57,14 +57,17 @@ func take_damage_over_time(amount: float, tick_count: int, time_per_tick: float,
 		await get_tree().create_timer(time_per_tick).timeout
 
 func die():
-	died.emit()
+	death.emit()
 	alive = false
-	health = 0
+	current_health = 0
 	
 	if death_scene:
-		var death = death_scene.instantiate()
-		death.global_position = global_position
-		get_tree().current_scene.add_child(death)
+		var death_inst = death_scene.instantiate()
+		death_inst.global_position = global_position
+		get_tree().current_scene.add_child(death_inst)
 	
 	if remove_on_death:
 		remove_on_death.queue_free()
+
+func get_percentage() -> float:
+	return 100.0 * float(current_health) / float(max_health)

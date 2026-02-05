@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://b71glf4ej7dt6"]
+
+[ext_resource type="Script" uid="uid://bbcdwo2dbvonc" path="res://scripts/enemies/targeting_enemy.gd" id="1_ba74n"]
+[ext_resource type="Texture2D" uid="uid://7wp4x76wt0ec" path="res://assets/sprites/enemies/rats/rat_king.png" id="2_2e3ci"]
+[ext_resource type="Script" uid="uid://wbg602kae0hy" path="res://scripts/flash_on_damage.gd" id="3_eqsxg"]
+[ext_resource type="Script" uid="uid://bogbh0vislyyp" path="res://scripts/health.gd" id="4_bgppb"]
+[ext_resource type="PackedScene" uid="uid://b8ua0icrqukqy" path="res://scenes/masks/rat_mask.tscn" id="5_2e3ci"]
+[ext_resource type="Script" uid="uid://dybly0jaf324d" path="res://scripts/state_machine/state_machine.gd" id="5_blkej"]
+[ext_resource type="Script" uid="uid://c3si6exg6doju" path="res://scripts/enemies/rat_king/rat_king_standard_attack.gd" id="6_fir7g"]
+[ext_resource type="PackedScene" uid="uid://c6p7orjskw0oi" path="res://scenes/bullets/enemy/enemy_poison_bullet.tscn" id="7_bt0mk"]
+[ext_resource type="Script" uid="uid://48p0gb5lmjju" path="res://scripts/enemies/rat_king/rat_king_special_attack.gd" id="8_povr0"]
+[ext_resource type="PackedScene" uid="uid://dv446gr1sqntx" path="res://scenes/bullets/enemy/enemy_poison_splash_bullet.tscn" id="9_ukxv0"]
+[ext_resource type="Script" uid="uid://d1v31afms45hj" path="res://scripts/enemies/generic_states/enemy_wind_up.gd" id="10_ba74n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lyyer"]
+radius = 82.1523
+
+[node name="RatKing" type="CharacterBody2D" groups=["Bosses"]]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_ba74n")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lyyer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2e3ci")
+
+[node name="ShootPoint" type="Node2D" parent="Sprite2D"]
+position = Vector2(-879.99994, -819.99994)
+scale = Vector2(9.999999, 9.999999)
+
+[node name="FlashOnDamage" type="Node2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_eqsxg")
+sprite = NodePath("../Sprite2D")
+
+[node name="Health" type="Node2D" parent="." node_paths=PackedStringArray("flash_on_damage", "remove_on_death")]
+script = ExtResource("4_bgppb")
+flash_on_damage = NodePath("../FlashOnDamage")
+max_health = 500.0
+remove_on_death = NodePath("..")
+death_scene = ExtResource("5_2e3ci")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_blkej")
+initial_state = NodePath("StandardAttackState")
+
+[node name="StandardAttackState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_fir7g")
+enemy = NodePath("../..")
+bullet_scene = ExtResource("7_bt0mk")
+
+[node name="SpecialAttackState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_povr0")
+enemy = NodePath("../..")
+bullet_scene = ExtResource("9_ukxv0")
+
+[node name="WindUpState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_ba74n")
+enemy = NodePath("../..")
+wobble_time = 3.0
+next_state_name = "SpecialAttackState"

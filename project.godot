@@ -11,23 +11,22 @@ config_version=5
 [application]
 
 config/name="Project Wizard"
-run/main_scene="uid://r7xf5flrsoqa"
+run/main_scene="uid://ds2qpf7hcopm3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://scripts/global.gd"
-SceneManager="*res://scripts/scene_manager.gd"
-MusicController="*res://scenes/music_controller.tscn"
+SceneManager="*res://autoloads/scene_manager.gd"
+MusicController="*res://autoloads/music_controller.tscn"
+Game="*res://autoloads/game.gd"
 
 [global_group]
 
 Player=""
 Pickup=""
-RatBoss=""
-PengBoss=""
 Enemy=""
+Bosses=""
 
 [input]
 

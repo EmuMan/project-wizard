@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b4ydg8lobwx17"
+path="res://.godot/imported/Mask of the Bandits.ogg-02f91a4ea8ed65bc3ed1200ece417f2f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Mask of the Bandits.ogg"
+dest_files=["res://.godot/imported/Mask of the Bandits.ogg-02f91a4ea8ed65bc3ed1200ece417f2f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

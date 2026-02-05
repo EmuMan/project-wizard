@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://biqjp0idaqtia"]
+
+[ext_resource type="Script" uid="uid://bh31262grwmje" path="res://resources/item_resource.gd" id="1_m14uw"]
+[ext_resource type="Texture2D" uid="uid://c0i7n3tp4jtjy" path="res://assets/sprites/placeholder/mask.png" id="2_gnbcb"]
+
+[resource]
+script = ExtResource("1_m14uw")
+display_name = "Sick Mask"
+description = "A mask for sickness"
+texture = ExtResource("2_gnbcb")
+metadata/_custom_type_script = "uid://bh31262grwmje"
