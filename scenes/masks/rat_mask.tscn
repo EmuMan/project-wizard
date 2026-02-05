@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8ua0icrqukqy"]
 
 [ext_resource type="Texture2D" uid="uid://dcoe1jg0cqxvv" path="res://assets/sprites/masks/rat_mask.png" id="1_jdtwb"]
-[ext_resource type="Script" uid="uid://38yhes03lt1v" path="res://scripts/masks/rat_mask.gd" id="1_kjvpt"]
-[ext_resource type="Resource" uid="uid://wwnkio7bwli" path="res://resources/items/ratmask.tres" id="2_0f4ax"]
+[ext_resource type="Script" uid="uid://38yhes03lt1v" path="res://scripts/masks/mask.gd" id="1_kjvpt"]
+[ext_resource type="Resource" uid="uid://wwnkio7bwli" path="res://resources/items/rat_mask.tres" id="2_0f4ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jdtwb"]
 radius = 18.0
 
-[node name="RatMask" type="StaticBody2D"]
+[node name="RatMask" type="Node2D"]
 script = ExtResource("1_kjvpt")
 item = ExtResource("2_0f4ax")
 

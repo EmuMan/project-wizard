@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://wwnkio7bwli"]
+
+[ext_resource type="PackedScene" uid="uid://dgfetujwal8f1" path="res://scenes/bullets/player/player_poison_splash_bullet.tscn" id="1_oj4lv"]
+[ext_resource type="Script" uid="uid://t6tlsfjimdn8" path="res://resources/usage_actions/bullet_action.gd" id="2_ms5jj"]
+[ext_resource type="Script" uid="uid://bh31262grwmje" path="res://resources/item_resource.gd" id="2_oj4lv"]
+[ext_resource type="Texture2D" uid="uid://dcoe1jg0cqxvv" path="res://assets/sprites/masks/rat_mask.png" id="3_ms5jj"]
+
+[sub_resource type="Resource" id="Resource_fkeje"]
+script = ExtResource("2_ms5jj")
+bullet_scene = ExtResource("1_oj4lv")
+cooldown_duration = 10.0
+metadata/_custom_type_script = "uid://t6tlsfjimdn8"
+
+[resource]
+script = ExtResource("2_oj4lv")
+display_name = "Rat Mask"
+description = "A mask form the sewers under Lurial"
+texture = ExtResource("3_ms5jj")
+action = SubResource("Resource_fkeje")
+metadata/_custom_type_script = "uid://bh31262grwmje"

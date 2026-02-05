@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://0fgj4yp5poyy"
 [sub_resource type="Resource" id="Resource_see1b"]
 script = ExtResource("5_see1b")
 enemy_scene = ExtResource("7_003oo")
+count = 2
 metadata/_custom_type_script = "uid://0fgj4yp5poyy"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lteeu"]

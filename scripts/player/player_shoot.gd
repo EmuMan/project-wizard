@@ -16,34 +16,24 @@ func _physics_process(delta: float) -> void:
 	time_since_last_shot += delta
 	time_since_last_ability += delta
 	
+	if inventory.equipped[1] and inventory.equipped[1].action:
+		# TODO: shoot start charged should also work
+		shoot_cooldown = inventory.equipped[1].action.cooldown_duration
 	if time_since_last_shot >= shoot_cooldown and Input.is_action_pressed("attack"):
 		shoot(get_global_mouse_position())
+	
+	if inventory.equipped[0] and inventory.equipped[0].action:
+		# TODO: ability start charged should also work
+		ability_cooldown = inventory.equipped[0].action.cooldown_duration
 	if time_since_last_ability >= ability_cooldown and Input.is_action_pressed("special"):
 		special(get_global_mouse_position())
 
 func shoot(click_pos: Vector2) -> void:
-	if not bullet_scene:
-		return
-	
-	var bullet = bullet_scene.instantiate()
-	bullet.init_bullet(global_position, click_pos)
-	get_tree().current_scene.add_child(bullet)
-	
-	time_since_last_shot = 0.0
+	if inventory.equipped[1] and inventory.equipped[1].action and get_tree().current_scene is Node2D:
+		inventory.equipped[1].action.use(self, click_pos, get_tree().current_scene)
+		time_since_last_shot = 0.0
 	
 func special(click_pos: Vector2):
-	if inventory.equipped[0]:
-		if inventory.equipped[0].display_name == "Rat Mask":
-			if not rat_special_scene:
-				return
-			var bullet = rat_special_scene.instantiate()
-			bullet.init_bullet(global_position, click_pos)
-			get_tree().current_scene.add_child(bullet)
-		elif inventory.equipped[0].display_name == "Emperor Mask":
-			if not penguin_special_scene:
-				return
-			var bullet = penguin_special_scene.instantiate()
-			bullet.init_bullet(global_position, click_pos)
-			get_tree().current_scene.add_child(bullet)
-		
+	if inventory.equipped[0] and inventory.equipped[0].action and get_tree().current_scene is Node2D:
+		inventory.equipped[0].action.use(self, click_pos, get_tree().current_scene)
 		time_since_last_ability = 0.0

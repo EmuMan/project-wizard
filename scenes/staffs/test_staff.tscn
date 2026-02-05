@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfo8qktorga2j" path="res://scripts/staffs/test_staff.gd" id="1_dde5b"]
 [ext_resource type="Texture2D" uid="uid://c7nuokvgunqrj" path="res://assets/sprites/placeholder/wand.png" id="1_laq2k"]
-[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://resources/items/stickwand.tres" id="2_plmjh"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://resources/items/stick_wand.tres" id="2_plmjh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laq2k"]
 size = Vector2(14.071069, 48.790375)

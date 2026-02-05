@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://dp8pujrte4jyp"]
+
+[ext_resource type="Script" uid="uid://bh31262grwmje" path="res://resources/item_resource.gd" id="1_8yev4"]
+[ext_resource type="PackedScene" uid="uid://bgwjw42vlvkpb" path="res://scenes/lingering_effects/player/player_falling_icicle.tscn" id="1_cx2o5"]
+[ext_resource type="Script" uid="uid://36yf213ijx82" path="res://resources/usage_actions/spawn_action.gd" id="1_k8kcb"]
+[ext_resource type="Texture2D" uid="uid://enesj2irkrcx" path="res://assets/sprites/masks/penguin_mask.png" id="2_ggjug"]
+
+[sub_resource type="Resource" id="Resource_cx2o5"]
+script = ExtResource("1_k8kcb")
+entity_scene = ExtResource("1_cx2o5")
+cooldown_duration = 5.0
+metadata/_custom_type_script = "uid://36yf213ijx82"
+
+[resource]
+script = ExtResource("1_8yev4")
+display_name = "Emperor Mask"
+description = "Mask from the snowy mountains of Lurial"
+texture = ExtResource("2_ggjug")
+action = SubResource("Resource_cx2o5")
+metadata/_custom_type_script = "uid://bh31262grwmje"

@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgwjw42vlvkpb"]
+
+[ext_resource type="Script" uid="uid://c2xk5mvh12rb2" path="res://scripts/lingering_effects/falling_icicle.gd" id="1_03c4i"]
+[ext_resource type="Texture2D" uid="uid://580sa1vub3uy" path="res://assets/sprites/placeholder/white_circle.png" id="2_ly2ru"]
+[ext_resource type="Texture2D" uid="uid://draeopno2xcfv" path="res://assets/sprites/attacks/ice_block.png" id="3_7sw3r"]
+[ext_resource type="AudioStream" uid="uid://dmi00qyruxp6i" path="res://assets/sfx/penguins/ice_heavy_impact.wav" id="4_bw2xl"]
+[ext_resource type="AudioStream" uid="uid://bppjvc5w37nec" path="res://assets/sfx/penguins/ice_crackling.wav" id="5_iwmm1"]
+[ext_resource type="AudioStream" uid="uid://c2mw5e2pqbqf0" path="res://assets/sfx/penguins/ice_form.wav" id="6_6afi1"]
+[ext_resource type="AudioStream" uid="uid://bw55v62gqkjse" path="res://assets/sfx/penguins/ice_magic.wav" id="7_b2t65"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vddw"]
+radius = 57.63
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnavm"]
+radius = 125.289406
+
+[node name="PlayerFallingIcicle" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_03c4i")
+fall_speed = 600.0
+
+[node name="WarningHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7vddw")
+
+[node name="WarningSprite" type="Sprite2D" parent="."]
+modulate = Color(0.9490196, 0, 0.22352941, 0.41568628)
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("2_ly2ru")
+
+[node name="IcicleSprite" type="Sprite2D" parent="."]
+position = Vector2(-4, -16)
+scale = Vector2(0.06640625, 0.06640625)
+texture = ExtResource("3_7sw3r")
+
+[node name="FallenIcicle" type="StaticBody2D" parent="IcicleSprite"]
+process_mode = 4
+scale = Vector2(6.25, 6.25)
+
+[node name="IcicleHitbox" type="CollisionShape2D" parent="IcicleSprite/FallenIcicle"]
+position = Vector2(12.047059, 38.55059)
+shape = SubResource("CircleShape2D_pnavm")
+
+[node name="IcicleLandAudio" type="AudioStreamPlayer2D" parent="IcicleSprite/FallenIcicle"]
+stream = ExtResource("4_bw2xl")
+volume_db = -10.0
+autoplay = true
+
+[node name="IcicleCrackleAudio" type="AudioStreamPlayer2D" parent="IcicleSprite/FallenIcicle"]
+stream = ExtResource("5_iwmm1")
+volume_db = -20.0
+autoplay = true
+
+[node name="IcicleFormAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6afi1")
+volume_db = -10.0
+autoplay = true
+
+[node name="IcicleMagicAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_b2t65")
+volume_db = -10.0
+autoplay = true

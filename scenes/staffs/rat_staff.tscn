@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://caggrmkxkg5hu" path="res://assets/sprites/staffs/rat_staff.png" id="1_0ctoa"]
 [ext_resource type="Script" uid="uid://eb7cehpy4s8h" path="res://scripts/staffs/rat_staff.gd" id="1_erjle"]
-[ext_resource type="Resource" uid="uid://cpedljvdf10jw" path="res://resources/items/ratstaff.tres" id="2_necj5"]
+[ext_resource type="Resource" uid="uid://cpedljvdf10jw" path="res://resources/items/rat_staff.tres" id="2_necj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ctoa"]
 size = Vector2(44.547733, 154.14929)

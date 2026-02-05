@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://cqnuyeunopyv7"]
 
 [ext_resource type="Script" uid="uid://cpil2acsbyic" path="res://scripts/player/player.gd" id="1_v6fml"]
-[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://resources/items/stickwand.tres" id="2_70d11"]
-[ext_resource type="Resource" uid="uid://biqjp0idaqtia" path="res://resources/items/sickmask.tres" id="2_cw2d6"]
+[ext_resource type="Resource" uid="uid://c057mok7k6sx0" path="res://resources/items/stick_wand.tres" id="2_70d11"]
+[ext_resource type="Resource" uid="uid://biqjp0idaqtia" path="res://resources/items/sick_mask.tres" id="2_cw2d6"]
 [ext_resource type="Resource" uid="uid://bj2l5cejwy851" path="res://resources/inventory/player_inventory.tres" id="2_qu4a1"]
 [ext_resource type="PackedScene" uid="uid://dw2jtubxjr1yh" path="res://scenes/staffs/staff.tscn" id="4_mdl7e"]
 [ext_resource type="Texture2D" uid="uid://dmyf2fg274pdk" path="res://assets/sprites/player/player.png" id="5_70d11"]

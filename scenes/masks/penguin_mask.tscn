@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://fr5gbh3p2kvc"]
 
-[ext_resource type="Script" uid="uid://de27vmwed7k4b" path="res://scripts/masks/penguin_mask.gd" id="1_6x0y1"]
+[ext_resource type="Script" uid="uid://38yhes03lt1v" path="res://scripts/masks/mask.gd" id="1_5c6o7"]
 [ext_resource type="Texture2D" uid="uid://enesj2irkrcx" path="res://assets/sprites/masks/penguin_mask.png" id="1_houwa"]
-[ext_resource type="Resource" uid="uid://dp8pujrte4jyp" path="res://resources/items/emperormask.tres" id="2_i6wfk"]
+[ext_resource type="Resource" uid="uid://dp8pujrte4jyp" path="res://resources/items/penguin_mask.tres" id="2_0d508"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_houwa"]
 radius = 22.0
 
-[node name="EmperorMask" type="StaticBody2D"]
-script = ExtResource("1_6x0y1")
-item = ExtResource("2_i6wfk")
+[node name="EmperorMask" type="Node2D"]
+script = ExtResource("1_5c6o7")
+item = ExtResource("2_0d508")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.02, 0.02)
